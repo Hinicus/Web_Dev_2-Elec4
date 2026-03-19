@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHAN Tech | Aegis of Cyberprotection</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo-container">
+            <img src="Song_of_the_Welkin_Moon_Chapter.png" alt="CHAN Tech Logo" class="logo-icon" style="width: 75px; height: 75px;">
+            <span class="logo-text">CHAN Tech</span>
+        </div>
+        <nav class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#features">Features</a>
+            <a href="#contact">Contact</a>
+        </nav>
+        <div class="nav-action">
+            <a href="#contact" class="btn btn-nav">GET STARTED</a>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>SECURE YOUR<br><span class="highlight">DIGITAL WORLD</span></h1>
+            <p>Comprehensive cybersecurity tailored for the Pinoy SME. Protect your shop from physical hacks and network breaches with the Aegis watchdog.</p>
+            <div class="button-group">
+                <a href="#features" class="btn btn-primary">Explore Features</a>
+                <a href="#contact" class="btn btn-outline">Book a Demo</a>
+            </div>
+        </div>
+        <div class="hero-image"> <!-- Image carousel -->
+            <div class="carousel-container">
+                <div class="carousel-slide active">
+                    <div class="image-placeholder" style="border:none; width:100%; height:100%;">
+                        <img src="image_1.jpg" alt="Aegis Device in Action">
+                    </div>
+                </div>
+
+                <div class="carousel-slide">
+                    <div class="image-placeholder" style="border:none; width:100%; height:100%;">
+                        <img src="port_1.PNG" alt="AoC port 1">
+                    </div>
+                </div>
+
+                <div class="carousel-slide">
+                    <div class="image-placeholder" style="border:none; width:100%; height:100%;">
+                        <img src="port_2.jpg" alt="AoC port 2">
+                    </div>
+                </div>                
+
+                <div class="carousel-slide">
+                    <div class="image-placeholder" style="border:none; width:100%; height:100%;">
+                        <img src="UI_1.jpg" alt="AoC UI">
+                    </div>
+                </div>
+
+                <button class="carousel-prev" onclick="moveSlide(-1)">&#10094;</button>
+                <button class="carousel-next" onclick="moveSlide(1)">&#10095;</button>
+
+                <div class="carousel-dots">
+                    <span class="dot active" onclick="currentSlide(0)"></span>
+                    <span class="dot" onclick="currentSlide(1)"></span>
+                    <span class="dot" onclick="currentSlide(2)"></span>
+                    <span class="dot" onclick="currentSlide(3)"></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="features">
+        <h2>The Aegis Advantage</h2>
+        <p>Enterprise-grade protection scaled and priced for local businesses.</p>
+        
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🔌</div>
+                <h3>Plug & Play</h3>
+                <p>No IT consultant required. Simply plug the Aegis box into your existing setup to secure your local network instantly.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🛡️</div>
+                <h3>Port Blocking</h3>
+                <p>Antivirus software can't stop physical breaches. Aegis actively monitors and blocks unauthorized USB devices in real-time.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📱</div>
+                <h3>Real-Time Alerts</h3>
+                <p>Powered by our custom Sentinel firmware, you get instant mobile notifications the moment a threat is neutralized.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="contact-box">
+            <h2>Ready to Secure Your Shop?</h2>
+            <p>Upgrade your security for just ₱21,500. Contact our Bulacan team today to schedule your free "Live Hack" demonstration.</p>
+            <a href="contact-form.html" class="btn btn-primary" style="margin-bottom: 20px;">Contact Us!</a>
+            <p style="font-size: 14px;">📍 Meneses, Bulakan, Bulacan, 3000</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 CHAN Tech. Securing the future of Filipino SMEs.</p>
+    </footer>
+
+    <script>
+        let slideIndex = 0;
+        const slides = document.querySelectorAll('.carousel-slide');
+        const dots = document.querySelectorAll('.dot');
+
+        function showSlide(n) {
+            if (n >= slides.length) slideIndex = 0;
+            if (n < 0) slideIndex = slides.length - 1;
+            
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            
+            slides[slideIndex].classList.add('active');
+            dots[slideIndex].classList.add('active');
+        }
+
+        function moveSlide(n) {
+            showSlide(slideIndex += n);
+        }
+
+        function currentSlide(n) {
+            showSlide(slideIndex = n);
+        }
+
+        setInterval(() => {
+            moveSlide(1);
+        }, 5000);
+    </script>
+
+</body>
+</html>
