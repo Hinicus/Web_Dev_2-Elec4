@@ -34,7 +34,7 @@
                 <a href="logout.php" class="btn btn-outline" style="padding: 8px 16px; font-size: 12px; border-color: var(--text-muted); color: var(--text-muted);">LOG OUT</a>
             
             <?php else: ?>
-                <a href="sign-up.php" class="btn btn-nav">SIGN UP</a>
+                <a href="sign-up.html" class="btn btn-nav">SIGN UP</a>
                 <a href="login.php" class="btn btn-nav" style="margin-left: 10px;">LOG IN</a>
             <?php endif; ?>
         </div>

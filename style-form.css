@@ -12,6 +12,17 @@
   margin: 40px auto;
 }
 
+input.error {
+    border: 2px solid #ff3b3b;
+}
+
+.error-message {
+    color: #ff3b3b;
+    font-size: 13px;
+    margin-top: 5px;
+    display: none;
+}
+
 .form-title {
   text-align: center;
   color: var(--text-main);
