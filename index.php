@@ -11,6 +11,7 @@
     <title>CHAN Tech | Aegis of Cyberprotection</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet"> 
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -27,9 +28,14 @@
             <a href="#contact">Contact</a>
         </nav>
         <div class="nav-action"> <!-- Conditional display based on user authentication status -->
-            <?php if(isset($_SESSION['user_name'])): ?>
+            <?php if(isset($_SESSION['user_name'])): 
+                // Chop the name if it's over 20 characters
+                $raw_name = $_SESSION['user_name'];
+                $display_name = strlen($raw_name) > 20 ? substr($raw_name, 0, 20) . "..." : $raw_name;
+            ?>
+
                 <span style="color: var(--text-main); margin-right: 20px; font-weight: 600; font-family: var(--font-heading);">
-                    Welcome, <span class="highlight"><?php echo htmlspecialchars($_SESSION['user_name']); ?></span>!
+                    Welcome, <span class="highlight"><?php echo htmlspecialchars($display_name); ?></span>!
                 </span>
                 <a href="logout.php" class="btn btn-outline" style="padding: 8px 16px; font-size: 12px; border-color: var(--text-muted); color: var(--text-muted);">LOG OUT</a>
             
@@ -43,8 +49,12 @@
     <section id="home" class="hero">
         <div class="hero-content">
             <h1><!-- Conditional welcome message based on user authentication status -->
-                <?php if(isset($_SESSION['user_name'])): ?>
-                    WELCOME BACK,<br><span class="highlight"><?php echo strtoupper(htmlspecialchars($_SESSION['user_name'])); ?></span>
+                <?php if(isset($_SESSION['user_name'])):
+                    // Cut name to 13 characters for display in the hero section
+                    $raw_name = $_SESSION['user_name'];
+                    $display_name = strlen($raw_name) > 13 ? substr($raw_name, 0, 13) . "..." : $raw_name; 
+                    ?>
+                    WELCOME BACK,<br><span class="highlight"><?php echo strtoupper(htmlspecialchars($display_name)); ?></span>
                 <?php else: ?>
                     SECURE YOUR<br><span class="highlight">DIGITAL WORLD</span>
                 <?php endif; ?>
@@ -129,7 +139,7 @@
             </div>
             <div class="team-tab" onclick="selectMember('member2', this)">
                 <img src="pictures/ron_icon.jpg" alt="Member 2">
-                <span class="tab-name">Ron</span>
+                <span class="tab-name">Ronnel</span>
             </div>
             <div class="team-tab" onclick="selectMember('member3', this)">
                 <img src="pictures/naluz_icon.jpg" alt="Member 3">
@@ -141,15 +151,27 @@
 
             <div class="profile-card active-member" id="member1">
                 <div class="profile-left">
-                    <img src="pictures/matthew_profile.jpg" alt="Profile Picture" class="profile-pic">
+                    <img src="pictures/matthew_sablay.jpg" alt="Profile Picture" class="profile-pic">
                 </div>
                 <div class="profile-right">
                     
                     <div class="info-slide active" id="m1-sec1">
-                        <h3 class="profile-name">Matthew Antonio B. Bulaong</h3>
-                        <p class="profile-detail"><strong>Age:</strong> 22</p>
-                        <p class="profile-detail"><strong>Course/Section:</strong> BS Computer Engineering, 4B</p>
-                        <p class="profile-detail"><strong>University:</strong> Bulacan State University - Meneses Campus</p>
+                        <h3 class="profile-name" style="margin-bottom: 10px;">Matthew Antonio B. Bulaong</h3>
+                        
+                        <div class="title-divider"></div>
+
+                        <div class="details-wrapper">
+                            <p class="profile-detail"><i class="fas fa-user icon-accent"></i> <span><strong>Age:</strong> 22</span></p>
+                            <p class="profile-detail"><i class="fas fa-laptop-code icon-accent"></i> <span><strong>Course:</strong> BS Computer Engineering, 4B</span></p>
+                            <p class="profile-detail"><i class="fas fa-university icon-accent"></i> <span><strong>University:</strong> Bulacan State University - Meneses</span></p>
+                        </div>
+
+                        <div class="social-row">
+                            <a href="https://www.linkedin.com/in/matthew-antonio-bulaong-1a1412391" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                            <a href="https://github.com/hinicus" title="GitHub"><i class="fab fa-github"></i></a>
+                            <a href="mailto:bulaongmatthew55432@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+                        </div>
+
                         <button class="btn btn-primary slide-btn" onclick="switchSlide('member1', 'm1-sec2')">Personal Description &#10095;</button>
                     </div>
 
@@ -199,16 +221,29 @@
 
             <div class="profile-card" id="member2">
                 <div class="profile-left">
-                    <img src="assets/member2_pic.jpg" alt="Profile Picture" class="profile-pic">
+                    <img src="pictures/ron_sablay.jpg" alt="Profile Picture" class="profile-pic">
                 </div>
                 <div class="profile-right">
                     <div class="info-slide active" id="m2-sec1">
-                        <h3 class="profile-name">Ronnel V. Vasallo</h3>
-                        <p class="profile-detail"><strong>Age:</strong>25</p>
-                        <p class="profile-detail"><strong>Course/Section:</strong> BS Computer Engineering, 4B</p>
-                        <p class="profile-detail"><strong>University:</strong> Bulacan State University - Meneses Campus</p>
+                        <h3 class="profile-name" style="margin-bottom: 10px;">Ronnel V. Vasallo</h3>
+                        
+                        <div class="title-divider"></div>
+
+                        <div class="details-wrapper">
+                            <p class="profile-detail"><i class="fas fa-user icon-accent"></i> <span><strong>Age:</strong> 25</span></p>
+                            <p class="profile-detail"><i class="fas fa-laptop-code icon-accent"></i> <span><strong>Course:</strong> BS Computer Engineering, 4B</span></p>
+                            <p class="profile-detail"><i class="fas fa-university icon-accent"></i> <span><strong>University:</strong> Bulacan State University - Meneses</span></p>
+                        </div>
+
+                        <div class="social-row">
+                            <a href="" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                            <a href="" title="GitHub"><i class="fab fa-github"></i></a>
+                            <a href="" title="Email"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    
                         <button class="btn btn-primary slide-btn" onclick="switchSlide('member2', 'm2-sec2')">Personal Description &#10095;</button>
                     </div>
+                    
                     <div class="info-slide" id="m2-sec2">
                         <h4 class="slide-title">Personal Description</h4>
                         <p class="slide-text">Ronnel is a dedicated cybersecurity enthusiast with a passion for protecting digital assets and contributing to a safer digital environment.</p>
@@ -250,14 +285,26 @@
 
             <div class="profile-card" id="member3">
                 <div class="profile-left">
-                    <img src="pictures/Christian.jfif" alt="Profile Picture" class="profile-pic">
+                    <img src="pictures/naluz_sablay.jpg" alt="Profile Picture" class="profile-pic">
                 </div>
                 <div class="profile-right">
                     <div class="info-slide active" id="m3-sec1">
-                        <h3 class="profile-name">Christian M. Naluz</h3>
-                        <p class="profile-detail"><strong>Age:</strong> 21</p>
-                        <p class="profile-detail"><strong>Course/Section:</strong> BS Computer Engineering, 4B</p>
-                        <p class="profile-detail"><strong>University:</strong> Bulacan State University - Meneses Campus</p>
+                        <h3 class="profile-name" style="margin-bottom: 10px;">Chrisitan M. Naluz</h3>
+                        
+                        <div class="title-divider"></div>
+
+                        <div class="details-wrapper">
+                            <p class="profile-detail"><i class="fas fa-user icon-accent"></i> <span><strong>Age:</strong> 21</span></p>
+                            <p class="profile-detail"><i class="fas fa-laptop-code icon-accent"></i> <span><strong>Course:</strong> BS Computer Engineering, 4B</span></p>
+                            <p class="profile-detail"><i class="fas fa-university icon-accent"></i> <span><strong>University:</strong> Bulacan State University - Meneses</span></p>
+                        </div>
+
+                        <div class="social-row">
+                            <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" title="GitHub"><i class="fab fa-github"></i></a>
+                            <a href="#" title="Email"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    
                         <button class="btn btn-primary slide-btn" onclick="switchSlide('member3', 'm3-sec2')">Personal Description &#10095;</button>
                     </div>
                     <div class="info-slide" id="m3-sec2">

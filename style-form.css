@@ -358,3 +358,15 @@ body {
     text-align: center;
     font-weight: bold;
 }
+
+.success-message {
+    background: rgba(0, 229, 255, 0.1);
+    border: 1px solid var(--accent-cyan);
+    padding: 12px;
+    margin-top: 20px;
+    margin-bottom: 15px;
+    border-radius: 6px;
+    color: var(--accent-cyan);
+    text-align: center;
+    font-weight: bold;
+}

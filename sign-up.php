@@ -74,18 +74,16 @@ session_start(); ?>
             </div>
             </div>
 
-           <div class="form-group full-width">
-        <label for="password">Password <span class="required">*</span></label>
-        <div class="input-wrapper" style="position: relative;">
+        <div class="form-group full-width">
+            <label for="password">Password <span class="required">*</span></label>
+            <div class="input-wrapper" style="position: relative;">
             <input type="password" id="password" name="user_password" placeholder="Create a password" />
-
-    
-        <i class="fas fa-eye toggle-eye" id="togglePassword" title="Show/Hide Password"></i>
-    </div>
-    <div class="error-message" id="passwordError">
-     <span class="error-icon">!</span>
-      <span>Password is required</span>
-    </div>
+           <i class="fas fa-eye toggle-eye" id="togglePassword" title="Show/Hide Password"></i>
+           </div>
+      <div class="error-message" id="passwordError">
+      <span class="error-icon">!</span>
+        <span>Password is required</span>
+      </div>
     </div>
 
 <div class="form-group full-width">
@@ -115,110 +113,114 @@ session_start(); ?>
         </p>
     </div>
 
-    <script>
+  <script>
   const fields = [
-  {
-    input: document.getElementById('name'),
-    error: document.getElementById('nameError'),
-    clearBtn: document.getElementById('clearNameBtn'),
-    validate: val => /^[a-zA-Z ]+$/.test(val),
-    emptyMsg: 'First name is required',
-    invalidMsg: 'Only letters and spaces allowed'
-  },
-  {
-    input: document.getElementById('lastname'),
-    error: document.getElementById('lastnameError'),
-    clearBtn: document.getElementById('clearLastnameBtn'),
-    validate: val => /^[a-zA-Z ]+$/.test(val),
-    emptyMsg: 'Last name is required',
-    invalidMsg: 'Only letters and spaces allowed'
-  },
-  {
-    input: document.getElementById('email'),
-    error: document.getElementById('emailError'),
-    clearBtn: document.getElementById('clearEmailBtn'),
-    validate: val => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val),
-    emptyMsg: 'Email is required',
-    invalidMsg: 'Invalid email address'
-  },
-  {
-    input: document.getElementById('password'),
-    error: document.getElementById('passwordError'),
-    validate: val => /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^a-zA-Z0-9]).{8,}$/.test(val),
-    emptyMsg: 'Password is required',
-    invalidMsg: 'Must be 8+ chars with an upper, lower, number & special character',
-    toggle: document.getElementById('togglePassword')
-  },
-  {
-    input: document.getElementById('confirmpass'),
-    error: document.getElementById('confirmError'),
-    validate: val => val === document.getElementById('password').value,
-    emptyMsg: 'Confirm password is required',
-    invalidMsg: 'Passwords do not match',
-    toggle: document.getElementById('toggleConfirmPassword')
-  }
-];
+    {
+      input: document.getElementById('name'),
+      error: document.getElementById('nameError'),
+      clearBtn: document.getElementById('clearNameBtn'),
+      validate: val => /^[a-zA-Z ]+$/.test(val),
+      emptyMsg: 'First name is required',
+      invalidMsg: 'Only letters and spaces allowed'
+    },
+    {
+      input: document.getElementById('lastname'),
+      error: document.getElementById('lastnameError'),
+      clearBtn: document.getElementById('clearLastnameBtn'),
+      validate: val => /^[a-zA-Z ]+$/.test(val),
+      emptyMsg: 'Last name is required',
+      invalidMsg: 'Only letters and spaces allowed'
+    },
+    {
+      input: document.getElementById('email'),
+      error: document.getElementById('emailError'),
+      clearBtn: document.getElementById('clearEmailBtn'),
+      validate: val => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val),
+      emptyMsg: 'Email is required',
+      invalidMsg: 'Invalid email address'
+    },
+    {
+      input: document.getElementById('password'),
+      error: document.getElementById('passwordError'),
+      validate: val => /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^a-zA-Z0-9]).{8,}$/.test(val),
+      emptyMsg: 'Password is required',
+      invalidMsg: 'Must be 8+ chars with an upper, lower, number & special character',
+      toggle: document.getElementById('togglePassword')
+    },
+    {
+      input: document.getElementById('confirmpass'),
+      error: document.getElementById('confirmError'),
+      validate: val => val === document.getElementById('password').value,
+      emptyMsg: 'Confirm password is required',
+      invalidMsg: 'Passwords do not match',
+      toggle: document.getElementById('toggleConfirmPassword')
+    }
+  ];
 
-// Show/Hide password toggle
-fields.forEach(field => {
-  if (field.toggle) {
-    field.toggle.addEventListener('click', () => {
-      const type = field.input.type === 'password' ? 'text' : 'password';
-      field.input.type = type;
-      field.toggle.classList.toggle('fa-eye');
-      field.toggle.classList.toggle('fa-eye-slash');
-    });
-  }
-});
-
-
-function showError(input, errorElem, msg) {
-  input.classList.add('error');
-  errorElem.style.display = 'flex';
-  errorElem.querySelector('span:last-child').textContent = msg;
-}
-
-function hideError(input, errorElem) {
-  input.classList.remove('error');
-  errorElem.style.display = 'none';
-}
-
-// Input validation
-fields.forEach(({ input, error, clearBtn, validate, emptyMsg, invalidMsg }) => {
-  input.addEventListener('input', () => {
-    const val = input.value.trim();
-    if (clearBtn) clearBtn.style.display = val ? 'block' : 'none';
-
-    if (!val) showError(input, error, emptyMsg);
-    else if (!validate(val)) showError(input, error, invalidMsg);
-    else hideError(input, error);
+  // Show/Hide password toggle
+  fields.forEach(field => {
+    if (field.toggle) {
+      field.toggle.addEventListener('click', () => {
+        const type = field.input.type === 'password' ? 'text' : 'password';
+        field.input.type = type;
+        field.toggle.classList.toggle('fa-eye');
+        field.toggle.classList.toggle('fa-eye-slash');
+      });
+    }
   });
 
-  if (clearBtn) {
-    clearBtn.addEventListener('click', () => {
-      input.value = '';
-      clearBtn.style.display = 'none';
-      hideError(input, error);
-      input.focus();
-    });
-  }
-});
 
-// Prevent form submission if invalid
-document.getElementById('signupForm').addEventListener('submit', e => {
-  let formValid = true;
-  fields.forEach(({ input, error, validate, emptyMsg, invalidMsg }) => {
-    const val = input.value.trim();
-    if (!val) {
-      showError(input, error, emptyMsg);
-      formValid = false;
-    } else if (!validate(val)) {
-      showError(input, error, invalidMsg);
-      formValid = false;
-    } else hideError(input, error);
+  function showError(input, errorElem, msg) {
+    input.classList.add('error');
+    errorElem.style.display = 'flex';
+    errorElem.querySelector('span:last-child').textContent = msg;
+  }
+
+  function hideError(input, errorElem) {
+    input.classList.remove('error');
+    errorElem.style.display = 'none';
+  }
+
+  // Input validation
+  fields.forEach(({ input, error, clearBtn, validate, emptyMsg, invalidMsg }) => {
+    input.addEventListener('input', () => {
+      const val = input.value.trim();
+      if (clearBtn) clearBtn.style.display = val ? 'block' : 'none';
+
+      if (!val) showError(input, error, emptyMsg);
+      else if (!validate(val)) showError(input, error, invalidMsg);
+      else if (val.length > 75) showError(input, error, "Maximum 75 characters allowed");
+      else hideError(input, error);
+    });
+
+    if (clearBtn) {
+      clearBtn.addEventListener('click', () => {
+        input.value = '';
+        clearBtn.style.display = 'none';
+        hideError(input, error);
+        input.focus();
+      });
+    }
   });
-  if (!formValid) e.preventDefault();
-});
+
+  // Prevent form submission if invalid
+  document.getElementById('signupForm').addEventListener('submit', e => {
+    let formValid = true;
+    fields.forEach(({ input, error, validate, emptyMsg, invalidMsg }) => {
+      const val = input.value.trim();
+      if (!val) {
+        showError(input, error, emptyMsg);
+        formValid = false;
+      } else if ( val.length > 75) {  
+        showError(input, error, "Maximum 75 characters allowed");
+        formValid = false;
+      } else if (!validate(val)) {
+        showError(input, error, invalidMsg);
+        formValid = false;
+      } else hideError(input, error);
+    });
+    if (!formValid) e.preventDefault();
+  });
 </script>
 
     
