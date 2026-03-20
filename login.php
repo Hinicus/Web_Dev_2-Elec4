@@ -25,6 +25,18 @@
             
             <h2 style="font-family: var(--font-heading); font-size: 28px; color: var(--text-muted); font-weight: bold; margin: 0;">Log In to Your Account</h2>
         </div>
+
+        <?php if (isset($_SESSION['success'])): ?>
+            <div class="success-message" >
+                <?php echo htmlspecialchars($_SESSION['success']); unset($_SESSION['success']); ?>
+            </div>
+        <?php endif; ?>
+
+        <?php if (isset($_SESSION['login_error'])): ?>
+            <div class="error-message" style="background: rgba(255, 0, 0, 0.1); border: 1px solid #f44336; padding: 10px; margin-bottom: 20px; border-radius: 5px; color: #f44336; text-align: center; font-family: var(--font-body);">
+                <?php echo htmlspecialchars($_SESSION['login_error']); unset($_SESSION['login_error']); ?>
+            </div>
+        <?php endif; ?>
         
         <form action="process_login.php" method="POST">
             

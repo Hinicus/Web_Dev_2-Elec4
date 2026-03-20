@@ -204,14 +204,14 @@
                 <div class="profile-right">
                     <div class="info-slide active" id="m2-sec1">
                         <h3 class="profile-name">Ronnel V. Vasallo</h3>
-                        <p class="profile-detail"><strong>Age:</strong> 24</p>
+                        <p class="profile-detail"><strong>Age:</strong>25</p>
                         <p class="profile-detail"><strong>Course/Section:</strong> BS Computer Engineering, 4B</p>
                         <p class="profile-detail"><strong>University:</strong> Bulacan State University - Meneses Campus</p>
                         <button class="btn btn-primary slide-btn" onclick="switchSlide('member2', 'm2-sec2')">Personal Description &#10095;</button>
                     </div>
                     <div class="info-slide" id="m2-sec2">
                         <h4 class="slide-title">Personal Description</h4>
-                        <p class="slide-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris.</p>
+                        <p class="slide-text">Ronnel is a dedicated cybersecurity enthusiast with a passion for protecting digital assets and contributing to a safer digital environment.</p>
                         <div class="slide-controls">
                             <button class="btn btn-outline slide-btn" onclick="switchSlide('member2', 'm2-sec1')">&#10094; Back</button>
                             <button class="btn btn-primary slide-btn" onclick="switchSlide('member2', 'm2-sec3')">Hobbies &#10095;</button>
@@ -220,8 +220,11 @@
                     <div class="info-slide" id="m2-sec3">
                         <h4 class="slide-title">Hobbies & Interests</h4>
                         <ul class="slide-list">
-                            <li>Hobby 1</li>
-                            <li>Hobby 2</li>
+                            <li>Learning Penetration Testing and SOC</li>
+                            <li>Playing Organ</li>
+                            <li>Watching Anime</li>
+                            <li>Exercising</li>
+                            <li>Aquarium Fish Keeping</li>
                         </ul>
                         <div class="slide-controls">
                             <button class="btn btn-outline slide-btn" onclick="switchSlide('member2', 'm2-sec2')">&#10094; Back</button>
@@ -230,7 +233,7 @@
                     </div>
                     <div class="info-slide" id="m2-sec4">
                         <h4 class="slide-title">Vision (5 Years From Now)</h4>
-                        <p class="slide-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        <p class="slide-text">I envision myself as a skilled cybersecurity professional, holding topnotch certifications both in attack and defense, making a positive impact in protecting digital assets and contributing to a safer digital environment.</p>
                         <div class="slide-controls">
                             <button class="btn btn-outline slide-btn" onclick="switchSlide('member2', 'm2-sec3')">&#10094; Back</button>
                             <button class="btn btn-primary slide-btn" onclick="switchSlide('member2', 'm2-sec5')">Favorite Quote &#10095;</button>
@@ -238,7 +241,7 @@
                     </div>
                     <div class="info-slide" id="m2-sec5">
                         <div class="quote-container">
-                            <p class="fancy-quote">"Your placeholder quote here."</p>
+                            <p class="fancy-quote">"Whatever will be, will be"</p>
                         </div>
                         <button class="btn btn-outline slide-btn" onclick="switchSlide('member2', 'm2-sec1')">&#8634; Back to Start</button>
                     </div>

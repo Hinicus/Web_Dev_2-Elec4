@@ -25,7 +25,15 @@
             
             <h2 style="font-family: var(--font-heading); font-size: 28px; color: var(--text-muted); font-weight: bold; margin: 0;">Create an account</h2>
         </div>
-        
+        <?php if (isset($_SESSION['errors'])): ?>
+        <div class="server-errors">
+            <?php foreach ($_SESSION['errors'] as $error): ?>
+              <p style="margin: 0; font-size: 14px;">
+                <?php echo htmlspecialchars($error); ?></p>
+            <?php endforeach; ?>
+        </div>
+        <?php unset($_SESSION['errors']);  ?>
+        <?php endif; ?>
         <form id="signupForm" action="process_signup.php" method="POST">
             
             <div class="form-group full-width">
@@ -83,7 +91,7 @@
   <div class="input-wrapper" style="position: relative;">
     <input type="password" id="confirmpass" name="confirm_password" placeholder="Confirm your password" />
 
-    <!-- Font Awesome eye icon for toggle -->
+   
     <i class="fas fa-eye toggle-eye" id="toggleConfirmPassword" title="Show/Hide Password"></i>
   </div>
   <div class="error-message" id="confirmError">
@@ -134,9 +142,9 @@
   {
     input: document.getElementById('password'),
     error: document.getElementById('passwordError'),
-    validate: val => val.length >= 8,
+    validate: val => /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^a-zA-Z0-9]).{8,}$/.test(val),
     emptyMsg: 'Password is required',
-    invalidMsg: 'Password must be at least 8 characters',
+    invalidMsg: 'Must be 8+ chars with an upper, lower, number & special character',
     toggle: document.getElementById('togglePassword')
   },
   {
@@ -161,7 +169,7 @@ fields.forEach(field => {
   }
 });
 
-// Validation helpers
+
 function showError(input, errorElem, msg) {
   input.classList.add('error');
   errorElem.style.display = 'flex';

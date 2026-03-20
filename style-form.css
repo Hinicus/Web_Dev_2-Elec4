@@ -330,9 +330,31 @@ body {
 /* Responsive adjustments */
 @media (max-width: 600px) {
   .form-row {
-    grid-template-columns: 1fr; /* Stacks inputs on mobile */
+    grid-template-columns: 1fr; 
   }
   .contact-container {
     padding: 30px 20px;
   }
+}
+
+.server-success {
+    background: rgba(0, 229, 255, 0.1);
+    border: 1px solid var(--accent-cyan);
+    padding: 12px;
+    margin-bottom: 20px;
+    border-radius: 6px;
+    color: var(--accent-cyan);
+    text-align: center;
+    font-weight: bold;
+}
+
+.server-alert {
+    background: rgba(229, 9, 20, 0.1);
+    border: 1px solid #e50914;
+    padding: 12px;
+    margin-bottom: 20px;
+    border-radius: 6px;
+    color: #e50914;
+    text-align: center;
+    font-weight: bold;
 }
