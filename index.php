@@ -1,3 +1,7 @@
+<?php
+    session_start(); //start PHP session to manage user authentication and other session data across pages
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,15 +25,30 @@
             <a href="#team">Team</a>
             <a href="#contact">Contact</a>
         </nav>
-        <div class="nav-action">
-            <a href="signup.html" class="btn btn-nav">SIGN UP</a>
-            <a href="login.html" class="btn btn-nav">LOG IN</a>
+        <div class="nav-action"> <!-- Conditional display based on user authentication status -->
+            <?php if(isset($_SESSION['user_name'])): ?>
+                <span style="color: var(--text-main); margin-right: 20px; font-weight: 600; font-family: var(--font-heading);">
+                    Welcome, <span class="highlight"><?php echo htmlspecialchars($_SESSION['user_name']); ?></span>!
+                </span>
+                <a href="logout.php" class="btn btn-outline" style="padding: 8px 16px; font-size: 12px; border-color: var(--text-muted); color: var(--text-muted);">LOG OUT</a>
+            
+            <?php else: ?>
+                <a href="sign-up.php" class="btn btn-nav">SIGN UP</a>
+                <a href="login.php" class="btn btn-nav" style="margin-left: 10px;">LOG IN</a>
+            <?php endif; ?>
         </div>
     </header>
 
     <section id="home" class="hero">
         <div class="hero-content">
-            <h1>SECURE YOUR<br><span class="highlight">DIGITAL WORLD</span></h1>
+            <h1><!-- Conditional welcome message based on user authentication status -->
+                <?php if(isset($_SESSION['user_name'])): ?>
+                    WELCOME BACK,<br><span class="highlight"><?php echo strtoupper(htmlspecialchars($_SESSION['user_name'])); ?></span>
+                <?php else: ?>
+                    SECURE YOUR<br><span class="highlight">DIGITAL WORLD</span>
+                <?php endif; ?>
+            </h1>
+
             <p>Comprehensive cybersecurity tailored for the Pinoy SME. Protect your shop from physical hacks and network breaches with the Aegis watchdog.</p>
             <div class="button-group">
                 <a href="#features" class="btn btn-primary">Explore Features</a>

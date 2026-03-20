@@ -55,6 +55,7 @@
 /* Inputs, Selects, and Textareas */
 .contact-container input[type="text"],
 .contact-container input[type="email"],
+.contact-container input[type="password"],
 .contact-container input[type="tel"],
 .contact-container select,
 .contact-container textarea {
@@ -83,7 +84,7 @@
   color: var(--text-muted);
 }
 
-/* Customizing the Select Dropdown items */
+/* Customizing Select Dropdown items */
 .contact-container select option {
   background-color: var(--bg-card);
   color: var(--text-main);
