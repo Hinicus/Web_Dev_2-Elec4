@@ -79,7 +79,7 @@ session_start(); ?>
         <div class="input-wrapper" style="position: relative;">
             <input type="password" id="password" name="user_password" placeholder="Create a password" />
 
-    <!-- Solid eye icon -->
+    
         <i class="fas fa-eye toggle-eye" id="togglePassword" title="Show/Hide Password"></i>
     </div>
     <div class="error-message" id="passwordError">

@@ -33,7 +33,7 @@ mysqli_stmt_execute($check_stmt);
 mysqli_stmt_store_result($check_stmt);
 
 if (mysqli_stmt_num_rows($check_stmt) > 0) {
-    $errors[] = "This email is already registered. Please log in.";
+    $errors[] = "This email is already registered.";
 }
 mysqli_stmt_close($check_stmt);
 
