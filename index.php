@@ -259,7 +259,9 @@
                     </div>
                     <div class="info-slide" id="m3-sec2">
                         <h4 class="slide-title">Personal Description</h4>
-                        <p class="slide-text">I am</p>
+                        <p class="slide-text">I have a strong passion for logic and mathematics, which guides my approach to problem-solving and programming. 
+                            I have developed skills in various programming languages, including Java, Python, C++, HTML, CSS, JavaScript, and PHP. 
+                            I have also worked on projects that helped me apply my skills in real-world situations and improve my analytical thinking.</p>
                         <div class="slide-controls">
                             <button class="btn btn-outline slide-btn" onclick="switchSlide('member3', 'm3-sec1')">&#10094; Back</button>
                             <button class="btn btn-primary slide-btn" onclick="switchSlide('member3', 'm3-sec3')">Hobbies &#10095;</button>
@@ -268,8 +270,11 @@
                     <div class="info-slide" id="m3-sec3">
                         <h4 class="slide-title">Hobbies & Interests</h4>
                         <ul class="slide-list">
-                            <li>Hobby 1</li>
-                            <li>Hobby 2</li>
+                            <li>Playing online games</li>
+                            <li>Watching movies</li>
+                            <li>Coding/programming</li>
+                            <li>Playing chess</li>
+                            <li>Strategy games</li>
                         </ul>
                         <div class="slide-controls">
                             <button class="btn btn-outline slide-btn" onclick="switchSlide('member3', 'm3-sec2')">&#10094; Back</button>
@@ -278,7 +283,8 @@
                     </div>
                     <div class="info-slide" id="m3-sec4">
                         <h4 class="slide-title">Vision (5 Years From Now)</h4>
-                        <p class="slide-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        <p class="slide-text">Five years from now, I want to have a house and marry the girl I love, building a stable and happy life together while continuing 
+                            to grow both personally and professionally, and I want to become a successful engineer (even if the chances of it happening may seem very small.)</p>
                         <div class="slide-controls">
                             <button class="btn btn-outline slide-btn" onclick="switchSlide('member3', 'm3-sec3')">&#10094; Back</button>
                             <button class="btn btn-primary slide-btn" onclick="switchSlide('member3', 'm3-sec5')">Favorite Quote &#10095;</button>
@@ -286,7 +292,7 @@
                     </div>
                     <div class="info-slide" id="m3-sec5">
                         <div class="quote-container">
-                            <p class="fancy-quote">"Your placeholder quote here."</p>
+                            <p class="fancy-quote">"Always look on the bright side of life"</p>
                         </div>
                         <button class="btn btn-outline slide-btn" onclick="switchSlide('member3', 'm3-sec1')">&#8634; Back to Start</button>
                     </div>

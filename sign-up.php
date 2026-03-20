@@ -30,27 +30,27 @@
             
             <div class="form-group full-width">
                 <label for="name">First Name <span class="required">*</span></label>
-                <input type="text" id="name" name="user_name" placeholder="Enter your first name" required>
+                <input type="text" id="name" name="user_name" placeholder="Enter your first name">
             </div>
 
             <div class="form-group full-width">
                 <label for="lastname">Last Name <span class="required">*</span></label>
-                <input type="text" id="lastname" name="user_lastname" placeholder="Enter your last name" required>
+                <input type="text" id="lastname" name="user_lastname" placeholder="Enter your last name">
             </div>
 
             <div class="form-group full-width">
                 <label for="email">Email Address <span class="required">*</span></label>
-                <input type="email" id="email" name="user_email" placeholder="Enter your email" required>
+                <input type="text" id="email" name="user_email" placeholder="Enter your email">
             </div>
 
             <div class="form-group full-width">
                 <label for="password">Password <span class="required">*</span></label>
-                <input type="password" id="password" name="user_password" placeholder="Create a password" required>
+                <input type="password" id="password" name="user_password" placeholder="Create a password">
             </div>
 
             <div class="form-group full-width">
                 <label for="confirm_password">Confirm Password <span class="required">*</span></label>
-                <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm your password" required>
+                <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm your password">
             </div>
 
             <button type="submit" class="btn btn-primary full-width-btn" style="margin-top: 20px;">Create Account</button>
