@@ -12,16 +12,106 @@
   margin: 40px auto;
 }
 
-input.error {
-    border: 2px solid #ff3b3b;
+.form-group.full-width {
+    margin-bottom: 20px;
+    max-width: 500px;
+  }
+
+#name,
+#lastname,
+#email,
+#password,
+#confirmpass {
+    width: 100%;
+    padding: 12px 40px 12px 10px; /* extra right padding for clear button */
+    border: 2px solid var(--accent-cyan);
+    border-radius: 6px;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s;
 }
 
-.error-message {
-    color: #ff3b3b;
-    font-size: 13px;
-    margin-top: 5px;
-    display: none;
+/* Red border when there is an error */
+#name.error,
+#lastname.error,
+#email.error,
+#password.error,
+#confirmpass.error {
+    border-color: #e50914;
 }
+  
+  label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 8px;
+  }
+  .input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+  input[type="text"], input[type="password"] {
+    width: 100%;
+    padding: 12px 40px 12px 10px;
+    border: 2px solid var(--accent-cyan);
+    border-radius: 6px;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s;
+  }
+  input.error {
+    border-color: #e50914;
+  }
+
+  .toggle-eye {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 16px;
+  color: #555;
+  user-select: none;
+}
+
+  #togglePassword, #toggleConfirmPassword{
+    color: var(--accent-cyan);
+  }
+
+.toggle-eye {
+  right: 10px; /* next to clear button */
+}
+
+  .clear-btn {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+    cursor: pointer;
+    display: none;
+    user-select: none;
+    color: #999;
+  }
+  .error-message {
+    color: #e50914;
+    font-size: 14px;
+    margin-top: 8px;
+    display: none;
+    align-items: center;
+  }
+  .error-icon {
+    background: #e50914;
+    color: var(--accent-cyan);
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 6px;
+    font-size: 12px;
+  }
 
 .form-title {
   text-align: center;
