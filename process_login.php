@@ -19,8 +19,8 @@ mysqli_stmt_execute($stmt);
 $result = mysqli_stmt_get_result($stmt);
 
 if ($row = mysqli_fetch_assoc($result)) {
-    // Verify the typed password against the hashed password in the database
-    if (password_verify($password, $row['Password'])) {
+    // Compare the raw typed password directly to the raw password in the database
+    if ($password === $row['Password']) {
         
         // Security best practice: Regenerate session ID to prevent session fixation attacks
         session_regenerate_id(true); 

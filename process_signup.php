@@ -45,10 +45,11 @@ if (!empty($errors)) {
 }
 
 
-$hashed_password = password_hash($password, PASSWORD_DEFAULT);
+// Insert raw password (FOR LOCAL TESTING ONLY)
 $sql = "INSERT INTO signup (F_Name, L_Name, Email, Password) VALUES (?, ?, ?, ?)";
 $stmt = mysqli_prepare($conn, $sql);
-mysqli_stmt_bind_param($stmt, "ssss", $firstname, $lastname, $email, $hashed_password);
+// Binding the raw $password variable instead of the hash
+mysqli_stmt_bind_param($stmt, "ssss", $firstname, $lastname, $email, $password);
 
 if (mysqli_stmt_execute($stmt)) {
     
