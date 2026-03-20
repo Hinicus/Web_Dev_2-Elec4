@@ -83,6 +83,12 @@
             text-shadow: 0 0 8px rgba(0, 229, 255, 0.5);
         }
 
+        /* Highlights the current section in the navigation */
+        .nav-links a.active-nav {
+            color: var(--accent-cyan);
+            text-shadow: 0 0 8px rgba(0, 229, 255, 0.5);
+        }
+
         /* --- Buttons --- */
         .btn {
             text-decoration: none;
@@ -418,3 +424,215 @@
             background-color: var(--accent-cyan);
             box-shadow: 0 0 10px var(--accent-cyan);
         }
+
+/*CSS for the Team Section*/
+
+/* --- Team Master-Display Section --- */
+.team-section {
+    padding: 80px 8%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 80vh; /* Ensures it takes up a massive portion of the screen */
+}
+
+/* The Selector Tabs */
+.team-selectors {
+    display: flex;
+    gap: 50px;
+    margin-bottom: 40px;
+    justify-content: center;
+}
+
+.team-tab {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    opacity: 0.5; /* Faded when not selected */
+    transition: all 0.3s ease;
+    filter: grayscale(100%);
+
+    width: 160px; 
+    text-align: center;
+}
+
+.team-tab:hover {
+    opacity: 0.8;
+}
+
+.team-tab.active-tab {
+    opacity: 1;
+    filter: grayscale(0%);
+    transform: translateY(-5px);
+}
+
+.team-tab img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid transparent;
+    transition: all 0.3s ease;
+    margin-bottom: 10px;
+}
+
+.team-tab.active-tab img {
+    border-color: var(--accent-cyan);
+    box-shadow: 0 0 20px rgba(0, 229, 255, 0.4);
+}
+
+.tab-name {
+    font-family: var(--font-heading);
+    color: var(--text-main);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.team-tab.active-tab .tab-name {
+    color: var(--accent-cyan);
+}
+
+/* Main Display Area */
+.team-display-area {
+    width: 100%;
+    max-width: 1100px; /* Made larger */
+    position: relative;
+}
+
+.profile-card {
+    display: none; /* Hidden by default */
+    background: linear-gradient(135deg, var(--bg-card), #0b071e);
+    border: 1px solid rgba(176, 38, 255, 0.3);
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(176, 38, 255, 0.1);
+    width: 100%;
+    overflow: hidden;
+    min-height: 450px; /* Made taller */
+    animation: fadeCardIn 0.5s ease;
+}
+
+/* Only show the active one */
+.profile-card.active-member {
+    display: flex; 
+}
+
+@keyframes fadeCardIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Left Side: Photo */
+.profile-left {
+    flex: 0 0 40%; /* Image takes up more space now */
+    background-color: #000;
+}
+
+.profile-pic {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Right Side: Interactive Details */
+.profile-right {
+    flex: 1;
+    padding: 50px; /* More breathing room */
+    position: relative; 
+}
+
+/* Slide Mechanics */
+.info-slide {
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    right: 50px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+.info-slide.active {
+    opacity: 1;
+    visibility: visible;
+    position: relative;
+    top: 0; left: 0; right: 0;
+}
+
+/* Typography inside cards */
+.profile-name {
+    font-size: 36px; /* Larger */
+    color: var(--accent-cyan);
+    margin-bottom: 20px;
+}
+
+.slide-title {
+    font-size: 28px; /* Larger */
+    color: var(--text-main);
+    margin-bottom: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 10px;
+}
+
+.profile-detail, .slide-text, .slide-list li {
+    font-size: 17px;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+}
+
+.slide-list {
+    padding-left: 20px;
+    margin-bottom: 20px;
+}
+
+/* Quote Section Styling */
+.quote-container {
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.fancy-quote {
+    font-family: 'Caveat', cursive;
+    font-size: 42px; /* Extra large for emphasis */
+    line-height: 1.2;
+    color: var(--accent-purple);
+    text-shadow: 0 0 10px rgba(176, 38, 255, 0.3);
+    margin-bottom: 15px;
+}
+
+.quote-author {
+    font-size: 16px;
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+/* Button Layouts */
+.slide-controls {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.slide-btn {
+    padding: 10px 20px;
+    font-size: 14px;
+    margin-top: 20px;
+}
+
+/* Mobile Responsive */
+@media (max-width: 900px) {
+    .profile-card {
+        flex-direction: column;
+    }
+    .profile-left {
+        height: 350px;
+    }
+    .info-slide {
+        top: 30px; left: 30px; right: 30px;
+    }
+    .profile-right {
+        padding: 30px;
+    }
+}
