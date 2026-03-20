@@ -46,7 +46,7 @@ if ($confirm !== $password) {
 if (!empty($errors)) {
     $_SESSION['errors'] = $errors;
     $_SESSION['old'] = $_POST;
-    header("Location: sign-up.html"); // ⚠️ dapat PHP, hindi HTML
+    header("Location: sign-up.php");
     exit();
 }
 
