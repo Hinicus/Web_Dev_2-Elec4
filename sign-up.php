@@ -1,3 +1,5 @@
+<?php 
+session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,14 +28,14 @@
             <h2 style="font-family: var(--font-heading); font-size: 28px; color: var(--text-muted); font-weight: bold; margin: 0;">Create an account</h2>
         </div>
         <?php if (isset($_SESSION['errors'])): ?>
-        <div class="server-errors">
-            <?php foreach ($_SESSION['errors'] as $error): ?>
-              <p style="margin: 0; font-size: 14px;">
-                <?php echo htmlspecialchars($error); ?></p>
-            <?php endforeach; ?>
-        </div>
-        <?php unset($_SESSION['errors']);  ?>
+            <div class="server-alert">
+                <?php foreach ($_SESSION['errors'] as $error): ?>
+                    <p style="margin: 0; font-size: 14px;">⚠ <?php echo htmlspecialchars($error); ?></p>
+                <?php endforeach; ?>
+            </div>
+            <?php unset($_SESSION['errors']);  ?>
         <?php endif; ?>
+
         <form id="signupForm" action="process_signup.php" method="POST">
             
             <div class="form-group full-width">
