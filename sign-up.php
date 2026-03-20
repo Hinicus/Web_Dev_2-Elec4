@@ -64,29 +64,33 @@
             </div>
             </div>
 
-            <div class="form-group full-width">
-            <label for="password">Password <span class="required">*</span></label>
-          <div class="input-wrapper">
-           <input type="password" id="password" name="user_password" placeholder="Create a password" />
-          <span class="clear-btn" id="clearPasswordBtn" title="Clear">&times;</span>
-          </div>
-          <div class="error-message" id="passwordError">
-          <span class="error-icon">!</span>
-            <span>Password is required</span>
-          </div>
-          </div>
+           <div class="form-group full-width">
+        <label for="password">Password <span class="required">*</span></label>
+        <div class="input-wrapper" style="position: relative;">
+            <input type="password" id="password" name="user_password" placeholder="Create a password" />
 
-         <div class="form-group full-width">
-          <label for="confirmpass">Confirm Password <span class="required">*</span></label>
-         <div class="input-wrapper">
-           <input type="password" id="confirmpass" name="confirm_password" placeholder="Confirm your password" />
-           <span class="clear-btn" id="clearConfirmBtn" title="Clear">&times;</span>
-         </div>
-           <div class="error-message" id="confirmError">
-            <span class="error-icon">!</span>
-          <span>Passwords do not match</span>
-       </div>
-       </div>
+    <!-- Solid eye icon -->
+        <i class="fas fa-eye toggle-eye" id="togglePassword" title="Show/Hide Password"></i>
+    </div>
+    <div class="error-message" id="passwordError">
+     <span class="error-icon">!</span>
+      <span>Password is required</span>
+    </div>
+    </div>
+
+<div class="form-group full-width">
+  <label for="confirmpass">Confirm Password <span class="required">*</span></label>
+  <div class="input-wrapper" style="position: relative;">
+    <input type="password" id="confirmpass" name="confirm_password" placeholder="Confirm your password" />
+
+    <!-- Font Awesome eye icon for toggle -->
+    <i class="fas fa-eye toggle-eye" id="toggleConfirmPassword" title="Show/Hide Password"></i>
+  </div>
+  <div class="error-message" id="confirmError">
+    <span class="error-icon">!</span>
+    <span>Passwords do not match</span>
+  </div>
+</div>
 
             <button type="submit" class="btn btn-primary full-width-btn" style="margin-top: 20px;">Create Account</button>
         </form>
@@ -103,100 +107,108 @@
 
     <script>
   const fields = [
-    {
-      input: document.getElementById('name'),
-      error: document.getElementById('nameError'),
-      clearBtn: document.getElementById('clearNameBtn'),
-      validate: val => /^[a-zA-Z ]+$/.test(val),
-      emptyMsg: 'First name is required',
-      invalidMsg: 'Only letters and spaces allowed'
-    },
-    {
-      input: document.getElementById('lastname'),
-      error: document.getElementById('lastnameError'),
-      clearBtn: document.getElementById('clearLastnameBtn'),
-      validate: val => /^[a-zA-Z ]+$/.test(val),
-      emptyMsg: 'Last name is required',
-      invalidMsg: 'Only letters and spaces allowed'
-    },
-    {
-      input: document.getElementById('email'),
-      error: document.getElementById('emailError'),
-      clearBtn: document.getElementById('clearEmailBtn'),
-      validate: val => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val),
-      emptyMsg: 'Email is required',
-      invalidMsg: 'Invalid email address'
-    },
-    {
-      input: document.getElementById('password'),
-      error: document.getElementById('passwordError'),
-      clearBtn: document.getElementById('clearPasswordBtn'),
-      validate: val => val.length >= 8,
-      emptyMsg: 'Password is required',
-      invalidMsg: 'Password must be at least 8 characters'
-    },
-    {
-      input: document.getElementById('confirmpass'),
-      error: document.getElementById('confirmError'),
-      clearBtn: document.getElementById('clearConfirmBtn'),
-      validate: val => val === document.getElementById('password').value,
-      emptyMsg: 'Confirm password is required',
-      invalidMsg: 'Passwords do not match'
-    },
-  ];
-
-  function showError(input, errorElem, msg) {
-    input.classList.add('error');
-    errorElem.style.display = 'flex';
-    errorElem.querySelector('span:last-child').textContent = msg;
+  {
+    input: document.getElementById('name'),
+    error: document.getElementById('nameError'),
+    clearBtn: document.getElementById('clearNameBtn'),
+    validate: val => /^[a-zA-Z ]+$/.test(val),
+    emptyMsg: 'First name is required',
+    invalidMsg: 'Only letters and spaces allowed'
+  },
+  {
+    input: document.getElementById('lastname'),
+    error: document.getElementById('lastnameError'),
+    clearBtn: document.getElementById('clearLastnameBtn'),
+    validate: val => /^[a-zA-Z ]+$/.test(val),
+    emptyMsg: 'Last name is required',
+    invalidMsg: 'Only letters and spaces allowed'
+  },
+  {
+    input: document.getElementById('email'),
+    error: document.getElementById('emailError'),
+    clearBtn: document.getElementById('clearEmailBtn'),
+    validate: val => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val),
+    emptyMsg: 'Email is required',
+    invalidMsg: 'Invalid email address'
+  },
+  {
+    input: document.getElementById('password'),
+    error: document.getElementById('passwordError'),
+    validate: val => val.length >= 8,
+    emptyMsg: 'Password is required',
+    invalidMsg: 'Password must be at least 8 characters',
+    toggle: document.getElementById('togglePassword')
+  },
+  {
+    input: document.getElementById('confirmpass'),
+    error: document.getElementById('confirmError'),
+    validate: val => val === document.getElementById('password').value,
+    emptyMsg: 'Confirm password is required',
+    invalidMsg: 'Passwords do not match',
+    toggle: document.getElementById('toggleConfirmPassword')
   }
+];
 
-  function hideError(input, errorElem) {
-    input.classList.remove('error');
-    errorElem.style.display = 'none';
-  }
-
-  fields.forEach(({ input, error, clearBtn, validate, emptyMsg, invalidMsg }) => {
-    input.addEventListener('input', () => {
-      const val = input.value.trim();
-      clearBtn.style.display = val ? 'block' : 'none';
-
-      if (!val) {
-        showError(input, error, emptyMsg);
-      } else if (!validate(val)) {
-        showError(input, error, invalidMsg);
-      } else {
-        hideError(input, error);
-      }
+// Show/Hide password toggle
+fields.forEach(field => {
+  if (field.toggle) {
+    field.toggle.addEventListener('click', () => {
+      const type = field.input.type === 'password' ? 'text' : 'password';
+      field.input.type = type;
+      field.toggle.classList.toggle('fa-eye');
+      field.toggle.classList.toggle('fa-eye-slash');
     });
+  }
+});
 
+// Validation helpers
+function showError(input, errorElem, msg) {
+  input.classList.add('error');
+  errorElem.style.display = 'flex';
+  errorElem.querySelector('span:last-child').textContent = msg;
+}
+
+function hideError(input, errorElem) {
+  input.classList.remove('error');
+  errorElem.style.display = 'none';
+}
+
+// Input validation
+fields.forEach(({ input, error, clearBtn, validate, emptyMsg, invalidMsg }) => {
+  input.addEventListener('input', () => {
+    const val = input.value.trim();
+    if (clearBtn) clearBtn.style.display = val ? 'block' : 'none';
+
+    if (!val) showError(input, error, emptyMsg);
+    else if (!validate(val)) showError(input, error, invalidMsg);
+    else hideError(input, error);
+  });
+
+  if (clearBtn) {
     clearBtn.addEventListener('click', () => {
       input.value = '';
       clearBtn.style.display = 'none';
       hideError(input, error);
       input.focus();
     });
-  });
+  }
+});
 
-  // Prevent form submit if invalid
-  document.getElementById('signupForm').addEventListener('submit', e => {
-    let formValid = true;
-    fields.forEach(({ input, error, validate, emptyMsg, invalidMsg }) => {
-      const val = input.value.trim();
-      if (!val) {
-        showError(input, error, emptyMsg);
-        formValid = false;
-      } else if (!validate(val)) {
-        showError(input, error, invalidMsg);
-        formValid = false;
-      } else {
-        hideError(input, error);
-      }
-    });
-    if (!formValid) {
-      e.preventDefault();
-    }
+// Prevent form submission if invalid
+document.getElementById('signupForm').addEventListener('submit', e => {
+  let formValid = true;
+  fields.forEach(({ input, error, validate, emptyMsg, invalidMsg }) => {
+    const val = input.value.trim();
+    if (!val) {
+      showError(input, error, emptyMsg);
+      formValid = false;
+    } else if (!validate(val)) {
+      showError(input, error, invalidMsg);
+      formValid = false;
+    } else hideError(input, error);
   });
+  if (!formValid) e.preventDefault();
+});
 </script>
 
     
