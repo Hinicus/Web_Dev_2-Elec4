@@ -247,7 +247,7 @@
 
             <div class="profile-card" id="member3">
                 <div class="profile-left">
-                    <img src="assets/member3_pic.jpg" alt="Profile Picture" class="profile-pic">
+                    <img src="pictures/Christian.jfif" alt="Profile Picture" class="profile-pic">
                 </div>
                 <div class="profile-right">
                     <div class="info-slide active" id="m3-sec1">
@@ -259,7 +259,7 @@
                     </div>
                     <div class="info-slide" id="m3-sec2">
                         <h4 class="slide-title">Personal Description</h4>
-                        <p class="slide-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        <p class="slide-text">I am</p>
                         <div class="slide-controls">
                             <button class="btn btn-outline slide-btn" onclick="switchSlide('member3', 'm3-sec1')">&#10094; Back</button>
                             <button class="btn btn-primary slide-btn" onclick="switchSlide('member3', 'm3-sec3')">Hobbies &#10095;</button>
