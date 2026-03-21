@@ -40,26 +40,49 @@
             </div>
         <?php endif; ?>
 
-        <form action="process_forgot.php" method="POST">
-            <div class="form-group full-width">
-                <label for="email">Email Address <span class="required">*</span></label>
-                <input type="email" id="email" name="user_email" placeholder="Enter your email" required>
+        <form action="process_forgot.php" method="POST" id="resetForm">
+
+    <!-- EMAIL -->
+   <div class="form-group full-width">
+            <label for="email">Email Address <span class="required">*</span></label>
+            <div class="input-wrapper">
+            <input type="text" id="email" name="user_email" placeholder="Enter your email">
+            <span class="clear-btn" id="clearEmailBtn" title="Clear">&times;</span>
+            </div>
+            <div class="error-message" id="emailError">
+            <span class="error-icon">!</span>
+            <span>Email is required</span>
+            </div>
             </div>
 
-            <div class="form-group full-width" style="position: relative;">
-                <label for="password">New Password <span class="required">*</span></label>
-                <input type="password" id="password" name="user_password" placeholder="Enter new password" required>
-                <i class="fas fa-eye" id="togglePassword" style="position: absolute; right: 0.7rem; top: 2.8rem; cursor: pointer; color: var(--accent-cyan);"></i>
-            </div>
+        <div class="form-group full-width">
+            <label for="password">Password <span class="required">*</span></label>
+            <div class="input-wrapper" style="position: relative;">
+            <input type="password" id="password" name="user_password" placeholder="Create a password" />
+           <i class="fas fa-eye toggle-eye" id="togglePassword" title="Show/Hide Password"></i>
+           </div>
+      <div class="error-message" id="passwordError">
+      <span class="error-icon">!</span>
+        <span>Password is required</span>
+      </div>
+    </div>
 
-            <div class="form-group full-width" style="position: relative;">
-                <label for="confirm_password">Confirm Password <span class="required">*</span></label>
-                <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm new password" required>
-                <i class="fas fa-eye" id="toggleConfirm" style="position: absolute; right: 0.7rem; top: 2.6rem; cursor: pointer; color: var(--accent-cyan);"></i>
-            </div>
+<div class="form-group full-width">
+  <label for="confirmpass">Confirm Password <span class="required">*</span></label>
+  <div class="input-wrapper" style="position: relative;">
+    <input type="password" id="confirmpass" name="confirm_password" placeholder="Confirm your password" />
 
-            <button type="submit" class="btn btn-primary full-width-btn" style="margin-top: 20px;">Reset Password</button>
-        </form>
+   
+    <i class="fas fa-eye toggle-eye" id="toggleConfirmPassword" title="Show/Hide Password"></i>
+  </div>
+  <div class="error-message" id="confirmError">
+    <span class="error-icon">!</span>
+    <span>Passwords do not match</span>
+  </div>
+</div>
+
+    <button type="submit" class="btn btn-primary full-width-btn" style="margin-top: 20px;">Reset Password</button>
+</form>
 
         <p class="text-home" style="margin-top: 10px; font-size: 13px;">
             <a href="login.php" style="color: var(--text-muted);">&#8592; Back to Log In</a>
@@ -67,23 +90,101 @@
     </div>
 
     <script>
-    const togglePassword = document.querySelector('#togglePassword');
-    const password = document.querySelector('#password');
-    togglePassword.addEventListener('click', function () {
-        const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
-        password.setAttribute('type', type);
-        this.classList.toggle('fa-eye');
-        this.classList.toggle('fa-eye-slash');
-    });
+const fields = [
+  {
+    input: document.getElementById('email'),
+    error: document.getElementById('emailError'),
+    validate: val => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val),
+    emptyMsg: 'Email is required',
+    invalidMsg: 'Invalid email address'
+  },
+  {
+    input: document.getElementById('password'),
+    error: document.getElementById('passwordError'),
+    validate: val => /^(?=.*\d)(?=.*[^a-zA-Z0-9]).{8,}$/.test(val),
+    emptyMsg: 'Password is required',
+    invalidMsg: 'Must be 8+ chars with number & special character',
+    toggle: document.getElementById('togglePassword')
+  },
+  {
+    input: document.getElementById('confirmpass'), // ✅ FIXED
+    error: document.getElementById('confirmError'),
+    validate: val => val === document.getElementById('password').value,
+    emptyMsg: 'Confirm password is required',
+    invalidMsg: 'Passwords do not match',
+    toggle: document.getElementById('toggleConfirmPassword') // ✅ FIXED
+  }
+];
 
-    const toggleConfirm = document.querySelector('#toggleConfirm');
-    const confirmPassword = document.querySelector('#confirm_password');
-    toggleConfirm.addEventListener('click', function () {
-        const type = confirmPassword.getAttribute('type') === 'password' ? 'text' : 'password';
-        confirmPassword.setAttribute('type', type);
-        this.classList.toggle('fa-eye');
-        this.classList.toggle('fa-eye-slash');
+// TOGGLE PASSWORD
+fields.forEach(field => {
+  if (field.toggle) {
+    field.toggle.addEventListener('click', () => {
+      const type = field.input.type === 'password' ? 'text' : 'password';
+      field.input.type = type;
+      field.toggle.classList.toggle('fa-eye');
+      field.toggle.classList.toggle('fa-eye-slash');
     });
-    </script>
+  }
+});
+
+// ✅ FIXED ERROR FUNCTION (keeps icon)
+function showError(input, errorElem, msg) {
+  input.classList.add('error');
+  errorElem.style.display = 'flex';
+  errorElem.querySelector('span:last-child').textContent = msg;
+}
+
+function hideError(input, errorElem) {
+  input.classList.remove('error');
+  errorElem.style.display = 'none';
+}
+
+// INPUT VALIDATION
+fields.forEach(({ input, error, validate, emptyMsg, invalidMsg }) => {
+  input.addEventListener('input', () => {
+    const val = input.value.trim();
+
+    if (!val) showError(input, error, emptyMsg);
+    else if (!validate(val)) showError(input, error, invalidMsg);
+    else hideError(input, error);
+  });
+});
+
+// FIX: re-check confirm when password changes
+document.getElementById('password').addEventListener('input', () => {
+  const confirmInput = document.getElementById('confirmpass');
+  const confirmError = document.getElementById('confirmError');
+
+  if (confirmInput.value !== "") {
+    if (confirmInput.value !== password.value) {
+      showError(confirmInput, confirmError, "Passwords do not match");
+    } else {
+      hideError(confirmInput, confirmError);
+    }
+  }
+});
+
+// SUBMIT
+document.getElementById('resetForm').addEventListener('submit', e => {
+  let valid = true;
+
+  fields.forEach(({ input, error, validate, emptyMsg, invalidMsg }) => {
+    const val = input.value.trim();
+
+    if (!val) {
+      showError(input, error, emptyMsg);
+      valid = false;
+    } else if (!validate(val)) {
+      showError(input, error, invalidMsg);
+      valid = false;
+    } else {
+      hideError(input, error);
+    }
+  });
+
+  if (!valid) e.preventDefault();
+});
+</script>
 </body>
 </html>
