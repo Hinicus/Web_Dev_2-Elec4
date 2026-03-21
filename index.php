@@ -300,9 +300,9 @@
                         </div>
 
                         <div class="social-row">
-                            <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                            <a href="#" title="GitHub"><i class="fab fa-github"></i></a>
-                            <a href="#" title="Email"><i class="fas fa-envelope"></i></a>
+                            <a href="https://www.linkedin.com/in/christian-naluz-22ba713b8/" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                            <a href="https://github.com/christianmatito21-web" title="GitHub"><i class="fab fa-github"></i></a>
+                            <a href="mailto:christianmatito21@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
                         </div>
                     
                         <button class="btn btn-primary slide-btn" onclick="switchSlide('member3', 'm3-sec2')">Personal Description &#10095;</button>
