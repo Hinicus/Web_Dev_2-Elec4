@@ -368,30 +368,45 @@
 
     <script>
         let slideIndex = 0;
-        const slides = document.querySelectorAll('.carousel-slide');
-        const dots = document.querySelectorAll('.dot');
+    const slides = document.querySelectorAll('.carousel-slide');
+    const dots = document.querySelectorAll('.dot');
+    let autoSlideInterval = 5000;
+    let slideTimer;
 
-        function showSlide(n) {
-            if (n >= slides.length) slideIndex = 0;
-            if (n < 0) slideIndex = slides.length - 1;
-            
-            slides.forEach(slide => slide.classList.remove('active'));
-            dots.forEach(dot => dot.classList.remove('active'));
-            
-            slides[slideIndex].classList.add('active');
-            dots[slideIndex].classList.add('active');
-        }
+    function showSlide(n) {
+        slideIndex = n % slides.length; // ensures 0 → last slide smoothly
+        slides.forEach(slide => slide.classList.remove('active'));
+        dots.forEach(dot => dot.classList.remove('active'));
+        slides[slideIndex].classList.add('active');
+        dots[slideIndex].classList.add('active');
+}
 
-        function moveSlide(n) {
-            showSlide(slideIndex += n);
-        }
+    function moveSlide(n) {
+    showSlide(slideIndex + n);
+    resetTimer();
+}
 
-        function currentSlide(n) {
-            showSlide(slideIndex = n);
-        }
-        setInterval(() => {
-            moveSlide(1);
-        }, 5000);
+    function currentSlide(n) {
+    showSlide(n);
+    resetTimer();
+}
+
+    function resetTimer() {
+    clearInterval(slideTimer);
+    slideTimer = setInterval(() => {
+        moveSlide(1);
+    }, autoSlideInterval);
+}
+
+// Initialize
+    showSlide(slideIndex);
+    slideTimer = setInterval(() => {
+        moveSlide(1);
+    }, autoSlideInterval);
+
+    // Click events
+    dots.forEach((dot, index) => dot.addEventListener('click', () => currentSlide(index)));
+    slides.forEach(slide => slide.addEventListener('click', () => moveSlide(1)));
 
         // Function to switch between profile sections
         function switchSlide(memberCardId, targetSlideId) {
