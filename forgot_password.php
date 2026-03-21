@@ -28,12 +28,7 @@
             <h2 style="font-family: var(--font-heading); font-size: 28px; color: var(--text-muted); font-weight: bold; margin: 0;">Reset Your Password</h2>
         </div>
 
-        <?php if (isset($_SESSION['reset_success'])): ?>
-            <div class="success-message" >
-                <?php echo htmlspecialchars($_SESSION['reset_success']); unset($_SESSION['reset_success']); ?>
-            </div>
-        <?php endif; ?>
-
+        <!-- Display server-side error if exists -->
         <?php if (isset($_SESSION['reset_error'])): ?>
             <div class="server-alert">
                 <?php echo htmlspecialchars($_SESSION['reset_error']); unset($_SESSION['reset_error']); ?>
@@ -101,9 +96,9 @@ const fields = [
   {
     input: document.getElementById('password'),
     error: document.getElementById('passwordError'),
-    validate: val => /^(?=.*\d)(?=.*[^a-zA-Z0-9]).{8,}$/.test(val),
+    validate: val => /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^a-zA-Z0-9]).{8,}$/.test(val),
     emptyMsg: 'Password is required',
-    invalidMsg: 'Must be 8+ chars with number & special character',
+    invalidMsg: 'Must be 8+ chars with an upper, lower, number & special character.',
     toggle: document.getElementById('togglePassword')
   },
   {

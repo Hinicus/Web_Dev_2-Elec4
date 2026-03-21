@@ -66,15 +66,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt_update->bind_param("si", $password, $user_id);
 
     if ($stmt_update->execute()) {
-        $_SESSION['reset_success'] = "Your password has been reset successfully.";
+        $_SESSION['success'] = "Your password has been reset successfully.";
+        header("Location: login.php");
+        exit();
     } else {
         $_SESSION['reset_error'] = "Failed to reset password. Please try again.";
     }
 
     $stmt_update->close();
     $conn->close();
-
-    header("Location: forgot_password.php");
-    exit();
 }
 ?>
