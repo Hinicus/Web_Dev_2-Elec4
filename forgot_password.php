@@ -89,6 +89,7 @@ const fields = [
   {
     input: document.getElementById('email'),
     error: document.getElementById('emailError'),
+    clearBtn: document.getElementById('clearEmailBtn'), // Added clear button
     validate: val => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val),
     emptyMsg: 'Email is required',
     invalidMsg: 'Invalid email address'
@@ -102,12 +103,12 @@ const fields = [
     toggle: document.getElementById('togglePassword')
   },
   {
-    input: document.getElementById('confirmpass'), // ✅ FIXED
+    input: document.getElementById('confirmpass'),
     error: document.getElementById('confirmError'),
     validate: val => val === document.getElementById('password').value,
     emptyMsg: 'Confirm password is required',
     invalidMsg: 'Passwords do not match',
-    toggle: document.getElementById('toggleConfirmPassword') // ✅ FIXED
+    toggle: document.getElementById('toggleConfirmPassword')
   }
 ];
 
@@ -123,7 +124,7 @@ fields.forEach(field => {
   }
 });
 
-// ✅ FIXED ERROR FUNCTION (keeps icon)
+// SHOW/HIDE ERROR
 function showError(input, errorElem, msg) {
   input.classList.add('error');
   errorElem.style.display = 'flex';
@@ -135,15 +136,30 @@ function hideError(input, errorElem) {
   errorElem.style.display = 'none';
 }
 
-// INPUT VALIDATION
-fields.forEach(({ input, error, validate, emptyMsg, invalidMsg }) => {
+// INPUT VALIDATION + CLEAR BUTTON
+fields.forEach(({ input, error, clearBtn, validate, emptyMsg, invalidMsg }) => {
   input.addEventListener('input', () => {
     const val = input.value.trim();
+
+    // Show/hide clear button
+    if (clearBtn) {
+      clearBtn.style.display = val ? 'block' : 'none';
+    }
 
     if (!val) showError(input, error, emptyMsg);
     else if (!validate(val)) showError(input, error, invalidMsg);
     else hideError(input, error);
   });
+
+  // Clear button click
+  if (clearBtn) {
+    clearBtn.addEventListener('click', () => {
+      input.value = '';
+      clearBtn.style.display = 'none';
+      hideError(input, error);
+      input.focus();
+    });
+  }
 });
 
 // FIX: re-check confirm when password changes
@@ -160,7 +176,7 @@ document.getElementById('password').addEventListener('input', () => {
   }
 });
 
-// SUBMIT
+// FORM SUBMIT VALIDATION
 document.getElementById('resetForm').addEventListener('submit', e => {
   let valid = true;
 

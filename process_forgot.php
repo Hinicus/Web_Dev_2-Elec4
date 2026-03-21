@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit();
     }
 
-    // Validate password
+    // Validate password length
     if (strlen($password) < 8) {
         $_SESSION['reset_error'] = "Password must be at least 8 characters.";
         header("Location: forgot_password.php");
@@ -30,8 +30,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit();
     }
 
-    // Check if email exists
-    $stmt = $conn->prepare("SELECT id FROM signup WHERE email = ?");
+    // Check if email exists and get current password
+    $stmt = $conn->prepare("SELECT id, password FROM signup WHERE email = ?");
     if (!$stmt) {
         $_SESSION['reset_error'] = "Database error (prepare failed).";
         header("Location: forgot_password.php");
@@ -49,13 +49,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit();
     }
 
-    $stmt->bind_result($user_id);
+    $stmt->bind_result($user_id, $current_password);
     $stmt->fetch();
     $stmt->close();
 
-    // Hash the new password
+    // Check if new password is same as old
+    if ($password === $current_password) {
+        $_SESSION['reset_error'] = "This is your old password. Please choose a new one.";
+        header("Location: forgot_password.php");
+        exit();
+    }
 
-    // Update the password
+    // Update the password (plain text)
     $stmt_update = $conn->prepare("UPDATE signup SET password = ? WHERE id = ?");
     if (!$stmt_update) {
         $_SESSION['reset_error'] = "Database error (prepare failed).";
