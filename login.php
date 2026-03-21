@@ -7,6 +7,7 @@
     <title>Log In - CHAN Tech</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="style-form.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
 <body>
@@ -45,10 +46,14 @@
                 <input type="email" id="email" name="user_email" placeholder="Enter your email" required>
             </div>
 
-            <div class="form-group full-width">
-                <label for="password">Password <span class="required">*</span></label>
-                <input type="password" id="password" name="user_password" placeholder="Enter your password" required>
-            </div>
+            <div class="form-group full-width" style="position: relative;">
+    <label for="password">Password <span class="required">*</span></label>
+    
+    <input type="password" id="password" name="user_password" placeholder="Enter your password" required>
+
+    <i class="fas fa-eye" id="togglePassword" 
+       style="position: absolute; right: 0.7rem; top: 2.8rem; cursor: pointer; color: var(--accent-cyan);"></i>
+</div>
 
             <button type="submit" class="btn btn-primary full-width-btn" style="margin-top: 20px;">Log In</button>
         </form>
@@ -62,5 +67,20 @@
             <a href="index.php" style="color: var(--text-muted);">&#8592; Back to Home</a>
         </p>
     </div>
+
+    <script>
+    const togglePassword = document.querySelector('#togglePassword');
+    const password = document.querySelector('#password');
+
+    togglePassword.addEventListener('click', function () {
+    // Toggle input type
+    const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+    password.setAttribute('type', type);
+
+    // Toggle icon
+    this.classList.toggle('fa-eye');
+    this.classList.toggle('fa-eye-slash');
+});
+</script>   
 </body>
 </html>
