@@ -367,42 +367,49 @@
     </footer>
 
     <script>
-        let slideIndex = 0;
-    const slides = document.querySelectorAll('.carousel-slide');
-    const dots = document.querySelectorAll('.dot');
-    let autoSlideInterval = 5000;
-    let slideTimer;
+      let slideIndex = 0;
+const slides = document.querySelectorAll('.carousel-slide');
+const dots = document.querySelectorAll('.dot');
+let autoSlideInterval = 5000;
+let slideTimer;
 
-    function showSlide(n) {
-        slideIndex = n % slides.length; // ensures 0 → last slide smoothly
-        slides.forEach(slide => slide.classList.remove('active'));
-        dots.forEach(dot => dot.classList.remove('active'));
-        slides[slideIndex].classList.add('active');
-        dots[slideIndex].classList.add('active');
+// Show a specific slide
+function showSlide(n) {
+    // Wrap slide index correctly (works for negative numbers)
+    slideIndex = ((n % slides.length) + slides.length) % slides.length;
+
+    // Hide all slides
+    slides.forEach(slide => slide.classList.remove('active'));
+
+    // Show current slide
+    slides[slideIndex].classList.add('active');
+
+    // Update dots
+    dots.forEach(dot => dot.classList.remove('active'));
+    dots[slideIndex].classList.add('active');
 }
 
-    function moveSlide(n) {
+// Move forward/backward
+function moveSlide(n) {
     showSlide(slideIndex + n);
     resetTimer();
 }
 
-    function currentSlide(n) {
+// Go to a specific slide
+function currentSlide(n) {
     showSlide(n);
     resetTimer();
 }
 
-    function resetTimer() {
+// Reset auto-slide timer
+function resetTimer() {
     clearInterval(slideTimer);
-    slideTimer = setInterval(() => {
-        moveSlide(1);
-    }, autoSlideInterval);
+    slideTimer = setInterval(() => moveSlide(1), autoSlideInterval);
 }
 
 // Initialize
-    showSlide(slideIndex);
-    slideTimer = setInterval(() => {
-        moveSlide(1);
-    }, autoSlideInterval);
+showSlide(slideIndex);
+slideTimer = setInterval(() => moveSlide(1), autoSlideInterval);
 
     // Click events
     dots.forEach((dot, index) => dot.addEventListener('click', () => currentSlide(index)));
