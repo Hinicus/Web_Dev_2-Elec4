@@ -12,6 +12,22 @@
   margin: 40px auto;
 }
 
+a.forgot-link:link,
+a.forgot-link:visited {
+    color: var(--text-muted); /* default color */
+    text-decoration: none;    /* remove underline */
+}
+
+a.forgot-link:hover {
+    text-decoration: underline;
+    text-decoration-color: var(--accent-cyan); /* cyan underline on hover */
+    color: var(--accent-cyan);
+}
+
+a.forgot-link:active {
+    color: var(--text-muted); /* prevent red on click */
+}
+
 .form-group.full-width {
     margin-bottom: 20px;
     max-width: 500px;

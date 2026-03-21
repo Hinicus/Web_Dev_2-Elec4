@@ -57,6 +57,10 @@
 
             <button type="submit" class="btn btn-primary full-width-btn" style="margin-top: 20px;">Log In</button>
         </form>
+
+        <p style="text-align: right; margin-top: 10px; font-size: 10px;">
+    <a href="forgot_password.php" class="forgot-link">Forgot Password?</a>
+    </p>
         
         <p class="text-home">
             <span style="color: var(--text-muted);">Don't have an account?</span> 
