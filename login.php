@@ -43,13 +43,13 @@
             
             <div class="form-group full-width">
                 <label for="email">Email Address <span class="required">*</span></label>
-                <input type="email" id="email" name="user_email" placeholder="Enter your email" required>
+                <input type="email" id="email" name="user_email" placeholder="Enter your email">
             </div>
 
             <div class="form-group full-width" style="position: relative;">
     <label for="password">Password <span class="required">*</span></label>
     
-    <input type="password" id="password" name="user_password" placeholder="Enter your password" required>
+    <input type="password" id="password" name="user_password" placeholder="Enter your password">
 
     <i class="fas fa-eye" id="togglePassword" 
        style="position: absolute; right: 0.7rem; top: 2.8rem; cursor: pointer; color: var(--accent-cyan);"></i>
