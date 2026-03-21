@@ -1,12 +1,27 @@
 <?php
 session_start();
-require 'signup_db.php'; // Include your DB connection
+require 'connect.php'; // your database connection
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = trim($_POST['user_email']);
+    $password = $_POST['user_password'];
+    $confirm = $_POST['confirm_password'];
 
+    // Basic validation
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $_SESSION['forgot_error'] = "Invalid email address.";
+        $_SESSION['reset_error'] = "Invalid email address.";
+        header("Location: forgot_password.php");
+        exit();
+    }
+
+    if (strlen($password) < 8) {
+        $_SESSION['reset_error'] = "Password must be at least 6 characters.";
+        header("Location: forgot_password.php");
+        exit();
+    }
+
+    if ($password !== $confirm) {
+        $_SESSION['reset_error'] = "Passwords do not match.";
         header("Location: forgot_password.php");
         exit();
     }
@@ -18,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->store_result();
 
     if ($stmt->num_rows === 0) {
-        $_SESSION['forgot_error'] = "No account found with that email.";
+        $_SESSION['reset_error'] = "No account found with that email.";
         header("Location: forgot_password.php");
         exit();
     }
@@ -26,25 +41,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->bind_result($user_id);
     $stmt->fetch();
 
-    // Generate reset token
-    $token = bin2hex(random_bytes(50));
-    $expires = date("Y-m-d H:i:s", strtotime('+1 hour'));
+    // Hash new password
+    $hashed = password_hash($password, PASSWORD_DEFAULT);
 
-    // Save token in database
-    $stmt = $conn->prepare("UPDATE users SET reset_token=?, token_expires=? WHERE id=?");
-    $stmt->bind_param("ssi", $token, $expires, $user_id);
-    $stmt->execute();
+    // Update password in DB
+    $stmt_update = $conn->prepare("UPDATE users SET password = ? WHERE id = ?");
+    $stmt_update->bind_param("si", $hashed, $user_id);
 
-    // Send email
-    $reset_link = "https://yourdomain.com/reset_password.php?token=$token";
-    $subject = "Password Reset Request";
-    $message = "Hi,\n\nTo reset your password, click the link below:\n$reset_link\n\nThis link will expire in 1 hour.";
-    $headers = "From: no-reply@yourdomain.com";
-
-    if (mail($email, $subject, $message, $headers)) {
-        $_SESSION['forgot_success'] = "A reset link has been sent to your email.";
+    if ($stmt_update->execute()) {
+        $_SESSION['reset_success'] = "Your password has been reset successfully.";
     } else {
-        $_SESSION['forgot_error'] = "Failed to send email. Try again later.";
+        $_SESSION['reset_error'] = "Failed to reset password. Try again.";
     }
 
     header("Location: forgot_password.php");

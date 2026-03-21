@@ -47,6 +47,7 @@ a.forgot-link:active {
     transition: border-color 0.3s;
 }
 
+
 /* Red border when there is an error */
 #name.error,
 #lastname.error,
