@@ -236,9 +236,9 @@
                         </div>
 
                         <div class="social-row">
-                            <a href="" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                            <a href="" title="GitHub"><i class="fab fa-github"></i></a>
-                            <a href="" title="Email"><i class="fas fa-envelope"></i></a>
+                            <a href="https://www.linkedin.com/in/ronv0713/" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                            <a href="https://github.com/malayu21" title="GitHub"><i class="fab fa-github"></i></a>
+                            <a href="mailto:ron.varllasav@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
                         </div>
                     
                         <button class="btn btn-primary slide-btn" onclick="switchSlide('member2', 'm2-sec2')">Personal Description &#10095;</button>
