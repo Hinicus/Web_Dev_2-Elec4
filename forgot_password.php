@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <!-- Background Video -->
+    
     <video class="bg-video" autoplay muted loop playsinline>
         <source src="dark_plexus.mp4" type="video/mp4">
     </video>   
@@ -28,7 +28,7 @@
             <h2 style="font-family: var(--font-heading); font-size: 28px; color: var(--text-muted); font-weight: bold; margin: 0;">Reset Your Password</h2>
         </div>
 
-        <!-- Display server-side error if exists -->
+        
         <?php if (isset($_SESSION['reset_error'])): ?>
             <div class="server-alert">
                 <?php echo htmlspecialchars($_SESSION['reset_error']); unset($_SESSION['reset_error']); ?>
@@ -37,7 +37,7 @@
 
         <form action="process_forgot.php" method="POST" id="resetForm">
 
-    <!-- EMAIL -->
+   
    <div class="form-group full-width">
             <label for="email">Email Address <span class="required">*</span></label>
             <div class="input-wrapper">
@@ -89,7 +89,7 @@ const fields = [
   {
     input: document.getElementById('email'),
     error: document.getElementById('emailError'),
-    clearBtn: document.getElementById('clearEmailBtn'), // Added clear button
+    clearBtn: document.getElementById('clearEmailBtn'), 
     validate: val => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val),
     emptyMsg: 'Email is required',
     invalidMsg: 'Invalid email address'
@@ -112,7 +112,7 @@ const fields = [
   }
 ];
 
-// TOGGLE PASSWORD
+
 fields.forEach(field => {
   if (field.toggle) {
     field.toggle.addEventListener('click', () => {
@@ -124,7 +124,7 @@ fields.forEach(field => {
   }
 });
 
-// SHOW/HIDE ERROR
+
 function showError(input, errorElem, msg) {
   input.classList.add('error');
   errorElem.style.display = 'flex';
@@ -136,12 +136,12 @@ function hideError(input, errorElem) {
   errorElem.style.display = 'none';
 }
 
-// INPUT VALIDATION + CLEAR BUTTON
+
 fields.forEach(({ input, error, clearBtn, validate, emptyMsg, invalidMsg }) => {
   input.addEventListener('input', () => {
     const val = input.value.trim();
 
-    // Show/hide clear button
+    
     if (clearBtn) {
       clearBtn.style.display = val ? 'block' : 'none';
     }
@@ -151,7 +151,7 @@ fields.forEach(({ input, error, clearBtn, validate, emptyMsg, invalidMsg }) => {
     else hideError(input, error);
   });
 
-  // Clear button click
+  
   if (clearBtn) {
     clearBtn.addEventListener('click', () => {
       input.value = '';
@@ -162,7 +162,7 @@ fields.forEach(({ input, error, clearBtn, validate, emptyMsg, invalidMsg }) => {
   }
 });
 
-// FIX: re-check confirm when password changes
+
 document.getElementById('password').addEventListener('input', () => {
   const confirmInput = document.getElementById('confirmpass');
   const confirmError = document.getElementById('confirmError');
@@ -176,7 +176,7 @@ document.getElementById('password').addEventListener('input', () => {
   }
 });
 
-// FORM SUBMIT VALIDATION
+
 document.getElementById('resetForm').addEventListener('submit', e => {
   let valid = true;
 

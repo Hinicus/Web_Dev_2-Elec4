@@ -1,6 +1,6 @@
-/* --- Dark Theme Contact Form --- */
+
 .contact-container {
-  /* Matching your existing .contact-box styling */
+  
   background: linear-gradient(135deg, var(--bg-card), #0b071e);
   padding: 40px 40px;
   border-radius: 20px;
@@ -14,18 +14,18 @@
 
 a.forgot-link:link,
 a.forgot-link:visited {
-    color: var(--text-muted); /* default color */
-    text-decoration: none;    /* remove underline */
+    color: var(--text-muted); 
+    text-decoration: none;    
 }
 
 a.forgot-link:hover {
     text-decoration: underline;
-    text-decoration-color: var(--accent-cyan); /* cyan underline on hover */
+    text-decoration-color: var(--accent-cyan); 
     color: var(--accent-cyan);
 }
 
 a.forgot-link:active {
-    color: var(--text-muted); /* prevent red on click */
+    color: var(--text-muted); 
 }
 
 .form-group.full-width {
@@ -39,7 +39,7 @@ a.forgot-link:active {
 #password,
 #confirmpass {
     width: 100%;
-    padding: 12px 40px 12px 10px; /* extra right padding for clear button */
+    padding: 12px 40px 12px 10px; 
     border: 2px solid var(--accent-cyan);
     border-radius: 6px;
     font-size: 16px;
@@ -48,7 +48,7 @@ a.forgot-link:active {
 }
 
 
-/* Red border when there is an error */
+
 #name.error,
 #lastname.error,
 #email.error,
@@ -96,7 +96,7 @@ a.forgot-link:active {
   }
 
 .toggle-eye {
-  right: 10px; /* next to clear button */
+  right: 10px; 
 }
 
   .clear-btn {
@@ -139,7 +139,7 @@ a.forgot-link:active {
   margin-bottom: 20px;
 }
 
-/* Grid Layout */
+
 .form-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -157,7 +157,7 @@ a.forgot-link:active {
   margin-bottom: 15px;
 }
 
-/* Typography and Labels */
+
 .contact-container label {
   font-size: 14px;
   color: var(--text-main);
@@ -170,14 +170,14 @@ a.forgot-link:active {
   color: var(--accent-cyan);
 }
 
-/* Inputs, Selects, and Textareas */
+
 .contact-container input[type="text"],
 .contact-container input[type="email"],
 .contact-container input[type="password"],
 .contact-container input[type="tel"],
 .contact-container select,
 .contact-container textarea {
-  background-color: rgba(0, 0, 0, 0.3); /* Dark transparent input background */
+  background-color: rgba(0, 0, 0, 0.3); 
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 6px;
   padding: 10px 15px;
@@ -188,7 +188,7 @@ a.forgot-link:active {
   transition: all 0.3s ease;
 }
 
-/* Glowing Focus State */
+
 .contact-container input:focus,
 .contact-container select:focus,
 .contact-container textarea:focus {
@@ -202,13 +202,13 @@ a.forgot-link:active {
   color: var(--text-muted);
 }
 
-/* Customizing Select Dropdown items */
+
 .contact-container select option {
   background-color: var(--bg-card);
   color: var(--text-main);
 }
 
-/* Custom Phone Input Group */
+
 .phone-input-group {
   display: flex;
   background-color: rgba(0, 0, 0, 0.3);
@@ -231,7 +231,7 @@ a.forgot-link:active {
 }
 
 .phone-input-group select:focus {
-  box-shadow: none; /* remove inner shadow */
+  box-shadow: none; 
 }
 
 .phone-input-group input {
@@ -242,10 +242,10 @@ a.forgot-link:active {
 }
 
 .phone-input-group input:focus {
-  box-shadow: none; /* remove inner shadow */
+  box-shadow: none; 
 }
 
-/* File Upload Area */
+
 .file-upload-box {
   background-color: rgba(0, 0, 0, 0.2);
   border: 1px dashed var(--accent-purple);
@@ -275,18 +275,18 @@ a.forgot-link:active {
   margin-bottom: 10px;
 }
 
-/* Hide default file input */
+
 input[type="file"] {
   display: none; 
 }
 
-/* Make submit button stretch */
+
 .full-width-btn {
   width: 100%;
   margin-top: 10px;
 }
 
-/* Link back to home */
+
 .text-home {
   text-align: center;
   margin-top: 20px;
@@ -298,53 +298,53 @@ input[type="file"] {
   transition: color 0.3s ease;
 }
 
-/* Hover effect for home link */
+
 .text-home a:hover {
   color: var(--accent-purple);
 }
 
-/* Locks the video to the browser window */
+
 .bg-video {
     position: fixed; 
     top: 0;
     left: 0;
-    width: 100vw; /* 100% of the viewport width */
-    height: 100vh; /* 100% of the viewport height */
-    object-fit: cover; /* Prevents stretching */
-    z-index: -2; /* Puts it at the very, very back */
+    width: 100vw; 
+    height: 100vh; 
+    object-fit: cover; 
+    z-index: -2; 
 }
 
-/* Locks the dark overlay over the video */
+
 .video-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(7, 4, 20, 0.75); /* Your deep dark theme color */
-    z-index: -1; /* Puts it over the video, but behind the form */
+    background-color: rgba(7, 4, 20, 0.75); 
+    z-index: -1; 
 }
 
-/* Ensures the body allows the form to sit comfortably in the center */
+
 body {
     position: relative;
     min-height: 100vh;
     display: flex;
-    align-items: center; /* Vertically centers the form */
-    justify-content: center; /* Horizontally centers the form */
+    align-items: center; 
+    justify-content: center; 
     margin: 0;
-    padding: 20px; /* Gives a little breathing room on mobile screens */
+    padding: 20px; 
     box-sizing: border-box;
 }
 
-/* Since the body is handling the centering now, make sure your container is relative so it sits on top */
+
 .contact-container {
     position: relative;
-    z-index: 10; /* Keeps it above the video and overlay */
-    /* Keep the rest of your existing .contact-container styles here! */
+    z-index: 10; 
+    
 }
 
-/* Responsive adjustments */
+
 @media (max-width: 600px) {
   .form-row {
     grid-template-columns: 1fr; 

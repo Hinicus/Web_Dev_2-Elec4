@@ -1,10 +1,10 @@
 <?php
-    session_start(); //start PHP session to manage user authentication and other session data across pages
+    session_start(); 
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
-<!-- git testing -->
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -27,9 +27,9 @@
             <a href="#team">Team</a>
             <a href="#contact">Contact</a>
         </nav>
-        <div class="nav-action"> <!-- Conditional display based on user authentication status -->
+        <div class="nav-action"> 
             <?php if(isset($_SESSION['user_name'])): 
-                // Chop the name if it's over 20 characters
+                
                 $raw_name = $_SESSION['user_name'];
                 $display_name = strlen($raw_name) > 20 ? substr($raw_name, 0, 20) . "..." : $raw_name;
             ?>
@@ -48,9 +48,9 @@
 
     <section id="home" class="hero">
         <div class="hero-content">
-            <h1><!-- Conditional welcome message based on user authentication status -->
+            <h1>
                 <?php if(isset($_SESSION['user_name'])):
-                    // Cut name to 13 characters for display in the hero section
+                    
                     $raw_name = $_SESSION['user_name'];
                     $display_name = strlen($raw_name) > 13 ? substr($raw_name, 0, 13) . "..." : $raw_name; 
                     ?>
@@ -66,7 +66,7 @@
                 <a href="#contact" class="btn btn-outline">Book a Demo</a>
             </div>
         </div>
-        <div class="hero-image"> <!-- Image carousel -->
+        <div class="hero-image"> 
             <div class="carousel-container">
                 <div class="carousel-slide active">
                     <div class="image-placeholder" style="border:none; width:100%; height:100%;">
@@ -105,7 +105,7 @@
         </div>
     </section>
 
-    <!-- Features Section -->
+    
     <section id="features" class="features">
         <h2>The Aegis Advantage</h2>
         <p>Enterprise-grade protection scaled and priced for local businesses.</p>
@@ -128,7 +128,7 @@
             </div>
         </div>
     </section>
-    <!-- Team Profiles Section -->
+    
     <section class="team-section" id="team">
         <h1 style="text-align: center; margin-bottom: 20px; font-size: 42px;">Meet the <span class="highlight">Team</span></h1>
 
@@ -352,7 +352,7 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
+    
     <section id="contact" class="contact">
         <div class="contact-box">
             <h2>Ready to Secure Your Shop?</h2>
@@ -373,111 +373,110 @@ const dots = document.querySelectorAll('.dot');
 let autoSlideInterval = 5000;
 let slideTimer;
 
-// Show a specific slide
+
 function showSlide(n) {
-    // Wrap slide index correctly (works for negative numbers)
+    
     slideIndex = ((n % slides.length) + slides.length) % slides.length;
 
-    // Hide all slides
+    
     slides.forEach(slide => slide.classList.remove('active'));
 
-    // Show current slide
+    
     slides[slideIndex].classList.add('active');
 
-    // Update dots
+    
     dots.forEach(dot => dot.classList.remove('active'));
     dots[slideIndex].classList.add('active');
 }
 
-// Move forward/backward
+
 function moveSlide(n) {
     showSlide(slideIndex + n);
     resetTimer();
 }
 
-// Go to a specific slide
+
 function currentSlide(n) {
     showSlide(n);
     resetTimer();
 }
 
-// Reset auto-slide timer
+
 function resetTimer() {
     clearInterval(slideTimer);
     slideTimer = setInterval(() => moveSlide(1), autoSlideInterval);
 }
 
-// Initialize
+
 showSlide(slideIndex);
 slideTimer = setInterval(() => moveSlide(1), autoSlideInterval);
 
-    // Click events
+    
     dots.forEach((dot, index) => dot.addEventListener('click', () => currentSlide(index)));
     slides.forEach(slide => slide.addEventListener('click', () => moveSlide(1)));
 
-        // Function to switch between profile sections
+        
         function switchSlide(memberCardId, targetSlideId) {
         const card = document.getElementById(memberCardId); //Find the parent card
         
-        // 2. Find all slides inside THIS specific card
+        
         const slides = card.querySelectorAll('.info-slide');
         
-        // 3. Remove 'active' class from all slides
+        
         slides.forEach(slide => {
             slide.classList.remove('active');
         });
 
-        // 4. Add 'active' class to the specific target slide
+        
         const targetSlide = document.getElementById(targetSlideId);
         targetSlide.classList.add('active');
         }
 
-        // Function to switch between the 3 main team members
+        
         function selectMember(memberId, clickedTab) {
-        // 1. Hide all profile cards
+        
         const allCards = document.querySelectorAll('.profile-card');
         allCards.forEach(card => card.classList.remove('active-member'));
 
-        // 2. Remove 'active-tab' styling from all tabs
+        
         const allTabs = document.querySelectorAll('.team-tab');
         allTabs.forEach(tab => tab.classList.remove('active-tab'));
 
-        // 3. Show the selected profile card
+        
         const targetCard = document.getElementById(memberId);
         targetCard.classList.add('active-member');
 
-        // 4. Highlight the clicked tab
+        
         clickedTab.classList.add('active-tab');
         
-        //Reset: Reset to Section 1 every switch members
+        
         switchSlide(memberId, memberId.charAt(0) + memberId.charAt(6) + '-sec1');
         }
 
-        // --- Scrollspy Navigation ---
-        // 1. Grab all sections that have an ID, and all the links in the navbar
+        
         const sections = document.querySelectorAll('section[id]');
         const navLinks = document.querySelectorAll('.nav-links a');
 
-        // 2. Configure the observer
+        
         const observerOptions = {
             root: null,
-            rootMargin: '-20% 0px -70% 0px', // Triggers when the section reaches the upper part of the screen
+            rootMargin: '-20% 0px -70% 0px', 
             threshold: 0 
         };
 
-        // 3. Create the observer function
+        
         const sectionObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    // Get the ID of the section currently on screen
+                    
                     const currentId = entry.target.getAttribute('id');
                     
-                    // Loop through all nav links
+                    
                     navLinks.forEach(link => {
-                        // Remove the glow from all links
+                        
                         link.classList.remove('active-nav');
                         
-                        // If the link's href matches the current section, make it glow
+                        
                         if (link.getAttribute('href') === `#${currentId}`) {
                             link.classList.add('active-nav');
                         }
@@ -486,7 +485,7 @@ slideTimer = setInterval(() => moveSlide(1), autoSlideInterval);
             });
         }, observerOptions);
 
-        // 4. Tell the observer to start watching every section
+        
         sections.forEach(section => {
             sectionObserver.observe(section);
         });

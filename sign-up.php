@@ -157,7 +157,7 @@ session_start(); ?>
     }
   ];
 
-  // Show/Hide password toggle
+  
   fields.forEach(field => {
     if (field.toggle) {
       field.toggle.addEventListener('click', () => {
@@ -181,7 +181,7 @@ session_start(); ?>
     errorElem.style.display = 'none';
   }
 
-  // Input validation
+  
   fields.forEach(({ input, error, clearBtn, validate, emptyMsg, invalidMsg }) => {
     input.addEventListener('input', () => {
       const val = input.value.trim();
@@ -203,7 +203,7 @@ session_start(); ?>
     }
   });
 
-  // Prevent form submission if invalid
+  
   document.getElementById('signupForm').addEventListener('submit', e => {
     let formValid = true;
     fields.forEach(({ input, error, validate, emptyMsg, invalidMsg }) => {

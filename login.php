@@ -77,11 +77,11 @@
     const password = document.querySelector('#password');
 
     togglePassword.addEventListener('click', function () {
-    // Toggle input type
+    
     const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
     password.setAttribute('type', type);
 
-    // Toggle icon
+    
     this.classList.toggle('fa-eye');
     this.classList.toggle('fa-eye-slash');
 });
