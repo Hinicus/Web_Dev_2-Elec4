@@ -24,7 +24,6 @@
         <nav class="nav-links">
             <a href="#home">Home</a>
             <a href="#features">Features</a>
-            <a href="#team">Team</a>
             <a href="#contact">Contact</a>
         </nav>
         <div class="nav-action"> 
@@ -105,7 +104,6 @@
         </div>
     </section>
 
-    
     <section id="features" class="features">
         <h2>The Aegis Advantage</h2>
         <p>Enterprise-grade protection scaled and priced for local businesses.</p>
@@ -129,230 +127,213 @@
         </div>
     </section>
     
-    <section class="team-section" id="team">
-        <h1 style="text-align: center; margin-bottom: 20px; font-size: 42px;">Meet the <span class="highlight">Team</span></h1>
+    <?php
+    // 1. Get the current user's name from the session
+    $current_user = $_SESSION['user_name'] ?? '';
+    
+    // 2. Strict check: Are they one of the three specific members?
+    $is_matthew = (stripos($current_user, 'Matthew') !== false);
+    $is_ronnel = (stripos($current_user, 'Ronnel') !== false);
+    $is_christian = (stripos($current_user, 'Christian') !== false);
+    
+    // 3. Flag if it is one of the devs
+    $is_team_member = $is_matthew || $is_ronnel || $is_christian;
+    ?>
 
-        <div class="team-selectors">
-            <div class="team-tab active-tab" onclick="selectMember('member1', this)">
-                <img src="pictures/matthew_icon.png" alt="Matthew">
-                <span class="tab-name">Matthew Antonio</span>
-            </div>
-            <div class="team-tab" onclick="selectMember('member2', this)">
-                <img src="pictures/ron_icon.jpg" alt="Member 2">
-                <span class="tab-name">Ronnel</span>
-            </div>
-            <div class="team-tab" onclick="selectMember('member3', this)">
-                <img src="pictures/naluz_icon.jpg" alt="Member 3">
-                <span class="tab-name">Christian</span>
-            </div>
-        </div>
+    <?php if ($is_team_member): ?>
+    <section class="team-section" id="team">
+        <h1 style="text-align: center; margin-bottom: 20px; font-size: 42px;">Your <span class="highlight">Profile</span></h1>
 
         <div class="team-display-area">
 
-            <div class="profile-card active-member" id="member1">
-                <div class="profile-left">
-                    <img src="pictures/matthew_sablay.jpg" alt="Profile Picture" class="profile-pic">
-                </div>
-                <div class="profile-right">
-                    
-                    <div class="info-slide active" id="m1-sec1">
-                        <h3 class="profile-name" style="margin-bottom: 10px;">Matthew Antonio B. Bulaong</h3>
-                        
-                        <div class="title-divider"></div>
-
-                        <div class="details-wrapper">
-                            <p class="profile-detail"><i class="fas fa-user icon-accent"></i> <span><strong>Age:</strong> 22</span></p>
-                            <p class="profile-detail"><i class="fas fa-laptop-code icon-accent"></i> <span><strong>Course:</strong> BS Computer Engineering, 4B</span></p>
-                            <p class="profile-detail"><i class="fas fa-university icon-accent"></i> <span><strong>University:</strong> Bulacan State University - Meneses</span></p>
-                        </div>
-
-                        <div class="social-row">
-                            <a href="https://www.linkedin.com/in/matthew-antonio-bulaong-1a1412391" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                            <a href="https://github.com/hinicus" title="GitHub"><i class="fab fa-github"></i></a>
-                            <a href="mailto:bulaongmatthew55432@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
-                        </div>
-
-                        <button class="btn btn-primary slide-btn" onclick="switchSlide('member1', 'm1-sec2')">Personal Description &#10095;</button>
+            <?php if ($is_matthew): ?>
+                <div class="profile-card active-member" id="member1">
+                    <div class="profile-left">
+                        <img src="pictures/matthew_sablay.jpg" alt="Profile Picture" class="profile-pic">
                     </div>
-
-                    <div class="info-slide" id="m1-sec2">
-                        <h4 class="slide-title">Personal Description</h4>
-                        <p class="slide-text">I have a strong passion for technology and programming, and I enjoy creating innovative solutions to real-world problems. Throughout my academic journey, I have gained experience in various programming languages in my time in Meneses Campus such as <strong><i>Java</i>, <i>Python</i>, <i>C++</i>, <i>HTML</i>, <i>CSS</i>, <i>JavaScript</i>, and <i>PHP</i></strong>. I have also worked on several projects that have allowed me to apply my skills and knowledge in practical settings.</p>
-                        <div class="slide-controls">
-                            <button class="btn btn-outline slide-btn" onclick="switchSlide('member1', 'm1-sec1')">&#10094; Back</button>
-                            <button class="btn btn-primary slide-btn" onclick="switchSlide('member1', 'm1-sec3')">Hobbies &#10095;</button>
+                    <div class="profile-right">
+                        <div class="info-slide active" id="m1-sec1">
+                            <h3 class="profile-name" style="margin-bottom: 10px;">Matthew Antonio B. Bulaong</h3>
+                            <div class="title-divider"></div>
+                            <div class="details-wrapper">
+                                <p class="profile-detail"><i class="fas fa-user icon-accent"></i> <span><strong>Age:</strong> 22</span></p>
+                                <p class="profile-detail"><i class="fas fa-laptop-code icon-accent"></i> <span><strong>Course:</strong> BS Computer Engineering, 4B</span></p>
+                                <p class="profile-detail"><i class="fas fa-university icon-accent"></i> <span><strong>University:</strong> Bulacan State University - Meneses</span></p>
+                            </div>
+                            <div class="social-row">
+                                <a href="https://www.linkedin.com/in/matthew-antonio-bulaong-1a1412391" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                                <a href="https://github.com/hinicus" title="GitHub"><i class="fab fa-github"></i></a>
+                                <a href="mailto:bulaongmatthew55432@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+                            </div>
+                            <button class="btn btn-primary slide-btn" onclick="switchSlide('member1', 'm1-sec2')">Personal Description &#10095;</button>
                         </div>
-                    </div>
-
-                    <div class="info-slide" id="m1-sec3">
-                        <h4 class="slide-title">Hobbies & Interests</h4>
-                        <ul class="slide-list">
-                            <li>Cybersecurity & Network Defense</li>
-                            <li>Web Development & UI/UX Design</li>
-                            <li>Arduino Microcontroller Projects</li>
-                            <li>Playing Video Games</li>
-                            <li>Listening to Music</li>
-                        </ul>
-                        <div class="slide-controls">
-                            <button class="btn btn-outline slide-btn" onclick="switchSlide('member1', 'm1-sec2')">&#10094; Back</button>
-                            <button class="btn btn-primary slide-btn" onclick="switchSlide('member1', 'm1-sec4')">Vision &#10095;</button>
+                        <div class="info-slide" id="m1-sec2">
+                            <h4 class="slide-title">Personal Description</h4>
+                            <p class="slide-text">I have a strong passion for technology and programming, and I enjoy creating innovative solutions to real-world problems. Throughout my academic journey, I have gained experience in various programming languages in my time in Meneses Campus such as <strong><i>Java</i>, <i>Python</i>, <i>C++</i>, <i>HTML</i>, <i>CSS</i>, <i>JavaScript</i>, and <i>PHP</i></strong>. I have also worked on several projects that have allowed me to apply my skills and knowledge in practical settings.</p>
+                            <div class="slide-controls">
+                                <button class="btn btn-outline slide-btn" onclick="switchSlide('member1', 'm1-sec1')">&#10094; Back</button>
+                                <button class="btn btn-primary slide-btn" onclick="switchSlide('member1', 'm1-sec3')">Hobbies &#10095;</button>
+                            </div>
                         </div>
-                    </div>
-
-                    <div class="info-slide" id="m1-sec4">
-                        <h4 class="slide-title">Vision (5 Years From Now)</h4>
-                        <p class="slide-text">In five years, I envision myself as a leading Cybersecurity Analyst or Full-Stack Engineer, developing enterprise-grade security tools and innovative web applications that empower local businesses in the Philippines.</p>
-                        <div class="slide-controls">
-                            <button class="btn btn-outline slide-btn" onclick="switchSlide('member1', 'm1-sec3')">&#10094; Back</button>
-                            <button class="btn btn-primary slide-btn" onclick="switchSlide('member1', 'm1-sec5')">Favorite Quote &#10095;</button>
+                        <div class="info-slide" id="m1-sec3">
+                            <h4 class="slide-title">Hobbies & Interests</h4>
+                            <ul class="slide-list">
+                                <li>Cybersecurity & Network Defense</li>
+                                <li>Web Development & UI/UX Design</li>
+                                <li>Arduino Microcontroller Projects</li>
+                                <li>Playing Video Games</li>
+                                <li>Listening to Music</li>
+                            </ul>
+                            <div class="slide-controls">
+                                <button class="btn btn-outline slide-btn" onclick="switchSlide('member1', 'm1-sec2')">&#10094; Back</button>
+                                <button class="btn btn-primary slide-btn" onclick="switchSlide('member1', 'm1-sec4')">Vision &#10095;</button>
+                            </div>
                         </div>
-                    </div>
-
-                    <div class="info-slide" id="m1-sec5">
-                        <div class="quote-container">
-                            <p class="fancy-quote">"Do not wait to strike till the iron is hot; but make it hot by striking."</p>
-                            <p class="quote-author">- William Butler Yeats</p>
+                        <div class="info-slide" id="m1-sec4">
+                            <h4 class="slide-title">Vision (5 Years From Now)</h4>
+                            <p class="slide-text">In five years, I envision myself as a leading Cybersecurity Analyst or Full-Stack Engineer, developing enterprise-grade security tools and innovative web applications that empower local businesses in the Philippines.</p>
+                            <div class="slide-controls">
+                                <button class="btn btn-outline slide-btn" onclick="switchSlide('member1', 'm1-sec3')">&#10094; Back</button>
+                                <button class="btn btn-primary slide-btn" onclick="switchSlide('member1', 'm1-sec5')">Favorite Quote &#10095;</button>
+                            </div>
                         </div>
-                        <button class="btn btn-outline slide-btn" onclick="switchSlide('member1', 'm1-sec1')">&#8634; Back to Start</button>
-                    </div>
-
-                </div>
-            </div>
-
-            <div class="profile-card" id="member2">
-                <div class="profile-left">
-                    <img src="pictures/ron_sablay.jpg" alt="Profile Picture" class="profile-pic">
-                </div>
-                <div class="profile-right">
-                    <div class="info-slide active" id="m2-sec1">
-                        <h3 class="profile-name" style="margin-bottom: 10px;">Ronnel V. Vasallo</h3>
-                        
-                        <div class="title-divider"></div>
-
-                        <div class="details-wrapper">
-                            <p class="profile-detail"><i class="fas fa-user icon-accent"></i> <span><strong>Age:</strong> 25</span></p>
-                            <p class="profile-detail"><i class="fas fa-laptop-code icon-accent"></i> <span><strong>Course:</strong> BS Computer Engineering, 4B</span></p>
-                            <p class="profile-detail"><i class="fas fa-university icon-accent"></i> <span><strong>University:</strong> Bulacan State University - Meneses</span></p>
+                        <div class="info-slide" id="m1-sec5">
+                            <div class="quote-container">
+                                <p class="fancy-quote">"Do not wait to strike till the iron is hot; but make it hot by striking."</p>
+                                <p class="quote-author">- William Butler Yeats</p>
+                            </div>
+                            <button class="btn btn-outline slide-btn" onclick="switchSlide('member1', 'm1-sec1')">&#8634; Back to Start</button>
                         </div>
-
-                        <div class="social-row">
-                            <a href="https://www.linkedin.com/in/ronv0713/" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                            <a href="https://github.com/malayu21" title="GitHub"><i class="fab fa-github"></i></a>
-                            <a href="mailto:ron.varllasav@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
-                        </div>
-                    
-                        <button class="btn btn-primary slide-btn" onclick="switchSlide('member2', 'm2-sec2')">Personal Description &#10095;</button>
-                    </div>
-                    
-                    <div class="info-slide" id="m2-sec2">
-                        <h4 class="slide-title">Personal Description</h4>
-                        <p class="slide-text">Ronnel is a dedicated cybersecurity enthusiast with a passion for protecting digital assets and contributing to a safer digital environment.</p>
-                        <div class="slide-controls">
-                            <button class="btn btn-outline slide-btn" onclick="switchSlide('member2', 'm2-sec1')">&#10094; Back</button>
-                            <button class="btn btn-primary slide-btn" onclick="switchSlide('member2', 'm2-sec3')">Hobbies &#10095;</button>
-                        </div>
-                    </div>
-                    <div class="info-slide" id="m2-sec3">
-                        <h4 class="slide-title">Hobbies & Interests</h4>
-                        <ul class="slide-list">
-                            <li>Learning Penetration Testing and SOC</li>
-                            <li>Playing Organ</li>
-                            <li>Watching Anime</li>
-                            <li>Exercising</li>
-                            <li>Aquarium Fish Keeping</li>
-                        </ul>
-                        <div class="slide-controls">
-                            <button class="btn btn-outline slide-btn" onclick="switchSlide('member2', 'm2-sec2')">&#10094; Back</button>
-                            <button class="btn btn-primary slide-btn" onclick="switchSlide('member2', 'm2-sec4')">Vision &#10095;</button>
-                        </div>
-                    </div>
-                    <div class="info-slide" id="m2-sec4">
-                        <h4 class="slide-title">Vision (5 Years From Now)</h4>
-                        <p class="slide-text">I envision myself as a skilled cybersecurity professional, holding topnotch certifications both in attack and defense, making a positive impact in protecting digital assets and contributing to a safer digital environment.</p>
-                        <div class="slide-controls">
-                            <button class="btn btn-outline slide-btn" onclick="switchSlide('member2', 'm2-sec3')">&#10094; Back</button>
-                            <button class="btn btn-primary slide-btn" onclick="switchSlide('member2', 'm2-sec5')">Favorite Quote &#10095;</button>
-                        </div>
-                    </div>
-                    <div class="info-slide" id="m2-sec5">
-                        <div class="quote-container">
-                            <p class="fancy-quote">"Whatever will be, will be"</p>
-                        </div>
-                        <button class="btn btn-outline slide-btn" onclick="switchSlide('member2', 'm2-sec1')">&#8634; Back to Start</button>
                     </div>
                 </div>
-            </div>
+            <?php endif; ?>
 
-            <div class="profile-card" id="member3">
-                <div class="profile-left">
-                    <img src="pictures/naluz_sablay.jpg" alt="Profile Picture" class="profile-pic">
-                </div>
-                <div class="profile-right">
-                    <div class="info-slide active" id="m3-sec1">
-                        <h3 class="profile-name" style="margin-bottom: 10px;">Chrisitan M. Naluz</h3>
-                        
-                        <div class="title-divider"></div>
-
-                        <div class="details-wrapper">
-                            <p class="profile-detail"><i class="fas fa-user icon-accent"></i> <span><strong>Age:</strong> 21</span></p>
-                            <p class="profile-detail"><i class="fas fa-laptop-code icon-accent"></i> <span><strong>Course:</strong> BS Computer Engineering, 4B</span></p>
-                            <p class="profile-detail"><i class="fas fa-university icon-accent"></i> <span><strong>University:</strong> Bulacan State University - Meneses</span></p>
-                        </div>
-
-                        <div class="social-row">
-                            <a href="https://www.linkedin.com/in/christian-naluz-22ba713b8/" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                            <a href="https://github.com/christianmatito21-web" title="GitHub"><i class="fab fa-github"></i></a>
-                            <a href="mailto:christianmatito21@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
-                        </div>
-                    
-                        <button class="btn btn-primary slide-btn" onclick="switchSlide('member3', 'm3-sec2')">Personal Description &#10095;</button>
+            <?php if ($is_ronnel): ?>
+                <div class="profile-card active-member" id="member2">
+                    <div class="profile-left">
+                        <img src="pictures/ron_sablay.jpg" alt="Profile Picture" class="profile-pic">
                     </div>
-                    <div class="info-slide" id="m3-sec2">
-                        <h4 class="slide-title">Personal Description</h4>
-                        <p class="slide-text">I have a strong passion for logic and mathematics, which guides my approach to problem-solving and programming. 
-                            I have developed skills in various programming languages, including Java, Python, C++, HTML, CSS, JavaScript, and PHP. 
-                            I have also worked on projects that helped me apply my skills in real-world situations and improve my analytical thinking.</p>
-                        <div class="slide-controls">
-                            <button class="btn btn-outline slide-btn" onclick="switchSlide('member3', 'm3-sec1')">&#10094; Back</button>
-                            <button class="btn btn-primary slide-btn" onclick="switchSlide('member3', 'm3-sec3')">Hobbies &#10095;</button>
+                    <div class="profile-right">
+                        <div class="info-slide active" id="m2-sec1">
+                            <h3 class="profile-name" style="margin-bottom: 10px;">Ronnel V. Vasallo</h3>
+                            <div class="title-divider"></div>
+                            <div class="details-wrapper">
+                                <p class="profile-detail"><i class="fas fa-user icon-accent"></i> <span><strong>Age:</strong> 25</span></p>
+                                <p class="profile-detail"><i class="fas fa-laptop-code icon-accent"></i> <span><strong>Course:</strong> BS Computer Engineering, 4B</span></p>
+                                <p class="profile-detail"><i class="fas fa-university icon-accent"></i> <span><strong>University:</strong> Bulacan State University - Meneses</span></p>
+                            </div>
+                            <div class="social-row">
+                                <a href="https://www.linkedin.com/in/ronv0713/" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                                <a href="https://github.com/malayu21" title="GitHub"><i class="fab fa-github"></i></a>
+                                <a href="mailto:ron.varllasav@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+                            </div>
+                            <button class="btn btn-primary slide-btn" onclick="switchSlide('member2', 'm2-sec2')">Personal Description &#10095;</button>
                         </div>
-                    </div>
-                    <div class="info-slide" id="m3-sec3">
-                        <h4 class="slide-title">Hobbies & Interests</h4>
-                        <ul class="slide-list">
-                            <li>Playing online games</li>
-                            <li>Watching movies</li>
-                            <li>Coding/programming</li>
-                            <li>Playing chess</li>
-                            <li>Strategy games</li>
-                        </ul>
-                        <div class="slide-controls">
-                            <button class="btn btn-outline slide-btn" onclick="switchSlide('member3', 'm3-sec2')">&#10094; Back</button>
-                            <button class="btn btn-primary slide-btn" onclick="switchSlide('member3', 'm3-sec4')">Vision &#10095;</button>
+                        <div class="info-slide" id="m2-sec2">
+                            <h4 class="slide-title">Personal Description</h4>
+                            <p class="slide-text">Ronnel is a dedicated cybersecurity enthusiast with a passion for protecting digital assets and contributing to a safer digital environment.</p>
+                            <div class="slide-controls">
+                                <button class="btn btn-outline slide-btn" onclick="switchSlide('member2', 'm2-sec1')">&#10094; Back</button>
+                                <button class="btn btn-primary slide-btn" onclick="switchSlide('member2', 'm2-sec3')">Hobbies &#10095;</button>
+                            </div>
                         </div>
-                    </div>
-                    <div class="info-slide" id="m3-sec4">
-                        <h4 class="slide-title">Vision (5 Years From Now)</h4>
-                        <p class="slide-text">Five years from now, I want to have a house and marry the girl I love, building a stable and happy life together while continuing 
-                            to grow both personally and professionally, and I want to become a successful engineer (even if the chances of it happening may seem very small.)</p>
-                        <div class="slide-controls">
-                            <button class="btn btn-outline slide-btn" onclick="switchSlide('member3', 'm3-sec3')">&#10094; Back</button>
-                            <button class="btn btn-primary slide-btn" onclick="switchSlide('member3', 'm3-sec5')">Favorite Quote &#10095;</button>
+                        <div class="info-slide" id="m2-sec3">
+                            <h4 class="slide-title">Hobbies & Interests</h4>
+                            <ul class="slide-list">
+                                <li>Learning Penetration Testing and SOC</li>
+                                <li>Playing Organ</li>
+                                <li>Watching Anime</li>
+                                <li>Exercising</li>
+                                <li>Aquarium Fish Keeping</li>
+                            </ul>
+                            <div class="slide-controls">
+                                <button class="btn btn-outline slide-btn" onclick="switchSlide('member2', 'm2-sec2')">&#10094; Back</button>
+                                <button class="btn btn-primary slide-btn" onclick="switchSlide('member2', 'm2-sec4')">Vision &#10095;</button>
+                            </div>
                         </div>
-                    </div>
-                    <div class="info-slide" id="m3-sec5">
-                        <div class="quote-container">
-                            <p class="fancy-quote">"Always look on the bright side of life"</p>
+                        <div class="info-slide" id="m2-sec4">
+                            <h4 class="slide-title">Vision (5 Years From Now)</h4>
+                            <p class="slide-text">I envision myself as a skilled cybersecurity professional, holding topnotch certifications both in attack and defense, making a positive impact in protecting digital assets and contributing to a safer digital environment.</p>
+                            <div class="slide-controls">
+                                <button class="btn btn-outline slide-btn" onclick="switchSlide('member2', 'm2-sec3')">&#10094; Back</button>
+                                <button class="btn btn-primary slide-btn" onclick="switchSlide('member2', 'm2-sec5')">Favorite Quote &#10095;</button>
+                            </div>
                         </div>
-                        <button class="btn btn-outline slide-btn" onclick="switchSlide('member3', 'm3-sec1')">&#8634; Back to Start</button>
+                        <div class="info-slide" id="m2-sec5">
+                            <div class="quote-container">
+                                <p class="fancy-quote">"Whatever will be, will be"</p>
+                            </div>
+                            <button class="btn btn-outline slide-btn" onclick="switchSlide('member2', 'm2-sec1')">&#8634; Back to Start</button>
+                        </div>
                     </div>
                 </div>
-            </div>
+            <?php endif; ?>
+
+            <?php if ($is_christian): ?>
+                <div class="profile-card active-member" id="member3">
+                    <div class="profile-left">
+                        <img src="pictures/naluz_sablay.jpg" alt="Profile Picture" class="profile-pic">
+                    </div>
+                    <div class="profile-right">
+                        <div class="info-slide active" id="m3-sec1">
+                            <h3 class="profile-name" style="margin-bottom: 10px;">Christian M. Naluz</h3>
+                            <div class="title-divider"></div>
+                            <div class="details-wrapper">
+                                <p class="profile-detail"><i class="fas fa-user icon-accent"></i> <span><strong>Age:</strong> 21</span></p>
+                                <p class="profile-detail"><i class="fas fa-laptop-code icon-accent"></i> <span><strong>Course:</strong> BS Computer Engineering, 4B</span></p>
+                                <p class="profile-detail"><i class="fas fa-university icon-accent"></i> <span><strong>University:</strong> Bulacan State University - Meneses</span></p>
+                            </div>
+                            <div class="social-row">
+                                <a href="https://www.linkedin.com/in/christian-naluz-22ba713b8/" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                                <a href="https://github.com/christianmatito21-web" title="GitHub"><i class="fab fa-github"></i></a>
+                                <a href="mailto:christianmatito21@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+                            </div>
+                            <button class="btn btn-primary slide-btn" onclick="switchSlide('member3', 'm3-sec2')">Personal Description &#10095;</button>
+                        </div>
+                        <div class="info-slide" id="m3-sec2">
+                            <h4 class="slide-title">Personal Description</h4>
+                            <p class="slide-text">I have a strong passion for logic and mathematics, which guides my approach to problem-solving and programming. I have developed skills in various programming languages, including Java, Python, C++, HTML, CSS, JavaScript, and PHP. I have also worked on projects that helped me apply my skills in real-world situations and improve my analytical thinking.</p>
+                            <div class="slide-controls">
+                                <button class="btn btn-outline slide-btn" onclick="switchSlide('member3', 'm3-sec1')">&#10094; Back</button>
+                                <button class="btn btn-primary slide-btn" onclick="switchSlide('member3', 'm3-sec3')">Hobbies &#10095;</button>
+                            </div>
+                        </div>
+                        <div class="info-slide" id="m3-sec3">
+                            <h4 class="slide-title">Hobbies & Interests</h4>
+                            <ul class="slide-list">
+                                <li>Playing online games</li>
+                                <li>Watching movies</li>
+                                <li>Coding/programming</li>
+                                <li>Playing chess</li>
+                                <li>Strategy games</li>
+                            </ul>
+                            <div class="slide-controls">
+                                <button class="btn btn-outline slide-btn" onclick="switchSlide('member3', 'm3-sec2')">&#10094; Back</button>
+                                <button class="btn btn-primary slide-btn" onclick="switchSlide('member3', 'm3-sec4')">Vision &#10095;</button>
+                            </div>
+                        </div>
+                        <div class="info-slide" id="m3-sec4">
+                            <h4 class="slide-title">Vision (5 Years From Now)</h4>
+                            <p class="slide-text">Five years from now, I want to have a house and marry the girl I love, building a stable and happy life together while continuing to grow both personally and professionally, and I want to become a successful engineer (even if the chances of it happening may seem very small.)</p>
+                            <div class="slide-controls">
+                                <button class="btn btn-outline slide-btn" onclick="switchSlide('member3', 'm3-sec3')">&#10094; Back</button>
+                                <button class="btn btn-primary slide-btn" onclick="switchSlide('member3', 'm3-sec5')">Favorite Quote &#10095;</button>
+                            </div>
+                        </div>
+                        <div class="info-slide" id="m3-sec5">
+                            <div class="quote-container">
+                                <p class="fancy-quote">"Always look on the bright side of life"</p>
+                            </div>
+                            <button class="btn btn-outline slide-btn" onclick="switchSlide('member3', 'm3-sec1')">&#8634; Back to Start</button>
+                        </div>
+                    </div>
+                </div>
+            <?php endif; ?>
 
         </div>
     </section>
+    <?php endif; ?>
 
-    
     <section id="contact" class="contact">
         <div class="contact-box">
             <h2>Ready to Secure Your Shop?</h2>
@@ -367,116 +348,72 @@
     </footer>
 
     <script>
-      let slideIndex = 0;
-const slides = document.querySelectorAll('.carousel-slide');
-const dots = document.querySelectorAll('.dot');
-let autoSlideInterval = 5000;
-let slideTimer;
+        // --- Image Carousel Logic ---
+        let slideIndex = 0;
+        const slides = document.querySelectorAll('.carousel-slide');
+        const dots = document.querySelectorAll('.dot');
+        let autoSlideInterval = 5000;
+        let slideTimer;
 
+        function showSlide(n) {
+            slideIndex = ((n % slides.length) + slides.length) % slides.length;
+            slides.forEach(slide => slide.classList.remove('active'));
+            slides[slideIndex].classList.add('active');
+            dots.forEach(dot => dot.classList.remove('active'));
+            dots[slideIndex].classList.add('active');
+        }
 
-function showSlide(n) {
-    
-    slideIndex = ((n % slides.length) + slides.length) % slides.length;
+        function moveSlide(n) {
+            showSlide(slideIndex + n);
+            resetTimer();
+        }
 
-    
-    slides.forEach(slide => slide.classList.remove('active'));
+        function currentSlide(n) {
+            showSlide(n);
+            resetTimer();
+        }
 
-    
-    slides[slideIndex].classList.add('active');
+        function resetTimer() {
+            clearInterval(slideTimer);
+            slideTimer = setInterval(() => moveSlide(1), autoSlideInterval);
+        }
 
-    
-    dots.forEach(dot => dot.classList.remove('active'));
-    dots[slideIndex].classList.add('active');
-}
+        showSlide(slideIndex);
+        slideTimer = setInterval(() => moveSlide(1), autoSlideInterval);
 
+        dots.forEach((dot, index) => dot.addEventListener('click', () => currentSlide(index)));
+        slides.forEach(slide => slide.addEventListener('click', () => moveSlide(1)));
 
-function moveSlide(n) {
-    showSlide(slideIndex + n);
-    resetTimer();
-}
-
-
-function currentSlide(n) {
-    showSlide(n);
-    resetTimer();
-}
-
-
-function resetTimer() {
-    clearInterval(slideTimer);
-    slideTimer = setInterval(() => moveSlide(1), autoSlideInterval);
-}
-
-
-showSlide(slideIndex);
-slideTimer = setInterval(() => moveSlide(1), autoSlideInterval);
-
-    
-    dots.forEach((dot, index) => dot.addEventListener('click', () => currentSlide(index)));
-    slides.forEach(slide => slide.addEventListener('click', () => moveSlide(1)));
-
-        
+        // --- Profile Card Navigation Logic ---
         function switchSlide(memberCardId, targetSlideId) {
-        const card = document.getElementById(memberCardId); //Find the parent card
-        
-        
-        const slides = card.querySelectorAll('.info-slide');
-        
-        
-        slides.forEach(slide => {
-            slide.classList.remove('active');
-        });
-
-        
-        const targetSlide = document.getElementById(targetSlideId);
-        targetSlide.classList.add('active');
+            const card = document.getElementById(memberCardId); 
+            const slides = card.querySelectorAll('.info-slide');
+            
+            slides.forEach(slide => {
+                slide.classList.remove('active');
+            });
+            
+            const targetSlide = document.getElementById(targetSlideId);
+            targetSlide.classList.add('active');
         }
 
-        
-        function selectMember(memberId, clickedTab) {
-        
-        const allCards = document.querySelectorAll('.profile-card');
-        allCards.forEach(card => card.classList.remove('active-member'));
-
-        
-        const allTabs = document.querySelectorAll('.team-tab');
-        allTabs.forEach(tab => tab.classList.remove('active-tab'));
-
-        
-        const targetCard = document.getElementById(memberId);
-        targetCard.classList.add('active-member');
-
-        
-        clickedTab.classList.add('active-tab');
-        
-        
-        switchSlide(memberId, memberId.charAt(0) + memberId.charAt(6) + '-sec1');
-        }
-
-        
+        // --- Scrollspy Navigation Logic ---
         const sections = document.querySelectorAll('section[id]');
         const navLinks = document.querySelectorAll('.nav-links a');
 
-        
         const observerOptions = {
             root: null,
             rootMargin: '-20% 0px -70% 0px', 
             threshold: 0 
         };
 
-        
         const sectionObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    
                     const currentId = entry.target.getAttribute('id');
                     
-                    
                     navLinks.forEach(link => {
-                        
                         link.classList.remove('active-nav');
-                        
-                        
                         if (link.getAttribute('href') === `#${currentId}`) {
                             link.classList.add('active-nav');
                         }
@@ -485,7 +422,6 @@ slideTimer = setInterval(() => moveSlide(1), autoSlideInterval);
             });
         }, observerOptions);
 
-        
         sections.forEach(section => {
             sectionObserver.observe(section);
         });
